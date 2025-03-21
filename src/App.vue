@@ -2,11 +2,11 @@
   <img alt="Vue logo" src="./assets/logo.png">
   <div class="container">
     <h1>Bitte geben Sie den Code ein</h1>
-     <!-- Eingabefeld mit Autofokus (automatischer Cursor beim Laden) und nur Zahlen erlaubt -->
-    <input v-model="searchQuery" type="text" placeholder="Code eingeben..." @input="filterNumbers" autofocus/> <!-- Dank dem Zusatz autofocus wird das Eingabefeld direkt fokussiert. Ee gäbe noch eine robustere lösung mit $refs und mounted() -->
-    <!-- Liste der gefilterten Artikel -->
+    <!-- Eingabefeld mit Autofokus (automatischer Cursor beim Laden) und nur Zahlen erlaubt -->
+    <input
+      v-model="searchQuery" type="text" placeholder="Code eingeben..." @input="filterNumbers" autofocus />
     <ul>
-     <!-- Zeigt die gefilterten Ergebnisse an, sobald der Benutzer beginnt zu tippen -->
+      <!-- Zeigt die gefilterten Ergebnisse an, sobald der Benutzer beginnt zu tippen -->
       <li v-for="item in filteredItems" :key="item.id">
         {{ item.name }}
       </li>
@@ -16,28 +16,37 @@
 
 <script>
 export default {
-   name: 'App',
+  name: 'App',
   data() {
     return {
-      searchQuery: '', // Suchbegriff des Benutzers
+      searchQuery: '', // Enthält die Benutzereingabe (nur Ziffern)
       items: [
-        { id: 1, name: 'Artikel 1' },
-        { id: 2, name: 'Artikel 2' },
-        { id: 3, name: 'Beispiel 3' },
-        // Weitere Artikel hier hinzufügen
+        { id: 1, name: '12345' },
+        { id: 2, name: '67890' },
+        { id: 3, name: '33456' },
+        { id: 4, name: '33567' },
+        { id: 5, name: '12356' },
       ],
     };
   },
- computed: {
-    // Berechnete Eigenschaft, die die Artikel basierend auf dem Suchbegriff filtert
+  computed: {
+    // Gibt nur die Elemente zurück, deren "name" mit der Eingabe beginnt
     filteredItems() {
       return this.items.filter(item =>
-        item.name.toLowerCase().includes(this.searchQuery.toLowerCase())
+        item.name.startsWith(this.searchQuery)
       );
     },
   },
+  methods: {
+    // Entfernt alle Nicht-Ziffern-Zeichen aus der Eingabe (nur Zahlen erlaubt)
+    filterNumbers(event) {
+      this.searchQuery = event.target.value.replace(/\D/g, '');
+    }
+  },
   mounted() {
-    document.title = 'Operation Code Suche'; // Setzt den Seitentitel
+    // Setzt den Titel des Browser-Tabs beim Laden der Seite
+    document.title = 'Operation Code Suche';
+    // Kein manueller Fokus nötig, da das Eingabefeld das Attribut "autofocus" hat
   },
 };
 </script>
@@ -51,6 +60,7 @@ export default {
   color: #2c3e50;
   margin-top: 60px;
 }
+
 .container {
   display: flex;
   flex-direction: column;
@@ -59,6 +69,7 @@ export default {
   height: 100vh;
   text-align: center;
 }
+
 input {
   padding: 10px;
   font-size: 16px;
