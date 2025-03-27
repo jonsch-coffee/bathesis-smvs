@@ -56,5 +56,13 @@
         }
       ]
     }
+  ],
+  "opcodes": [
+    { "code": "51420900", "guideId": 1 },
+    { "code": "51220300", "guideId": 2 },
+    { "code": "51220800", "guideId": 2 },
+    { "code": "51220900", "guideId": 2 },
+    { "code": "51320800", "guideId": 2 },
+    { "code": "51320900", "guideId": 2 }
   ]
 }
