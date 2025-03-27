@@ -1,66 +1,60 @@
 {
-  "Guides": [
+  "guides": [
     {
-      "ID": 1,
-      "Titel": "Cannot reactivate – Decommissionetiond at other location",
-      "Steps": ["A1", "A2", "A3", "A4"],
-      "OP-Codes": ["51420900"]
+      "id": 1,
+      "title": "Cannot reactivate – Decommissioned at other location",
+      "opCodes": ["51420900"],
+      "steps": [
+        {
+          "step": "A1",
+          "questionTitle": "Pack cannot be reactivated.",
+          "description": "This pack was decommissioned at another location and can only be reactivated at that location.",
+          "question": "Are you aware whether this pack has been decommissioned on your behalf by the wholesaler or pharmacy you received it from?",
+          "options": {
+            "A2": "Yes",
+            "A3": "No"
+          }
+        },
+        {
+          "step": "A2",
+          "questionTitle": "Packs that have been supplied in one location may only be reactivated in the same location.",
+          "description": "If you tried to reactivate the pack due to a procedural error, please document the root cause of the alert in NMVS Alerts. Once documented, the investigation is complete and the pack may be returned to saleable stock.",
+          "options": {}
+        },
+        {
+          "step": "A3",
+          "questionTitle": "Is this a borrowed pack?",
+          "options": {
+            "A4": "Yes",
+            "A5": "No"
+          }
+        },
+        {
+          "step": "A4",
+          "questionTitle": "Borrowed pack",
+          "description": "If the pack was decommissioned at the location you borrowed it from, you cannot reactivate it. If possible, ask the location you borrowed it from to reactivate it, but that can only be done within 10 days of the pack getting decommissioned. If you are certain that the pack was previously decommissioned at another location due to a procedural error, please document the root cause of the alert in NMVS Alerts. Once documented, the investigation is complete and the pack may be returned to saleable stock.",
+          "options": {}
+        },
+        {
+          "step": "A5",
+          "questionTitle": "Not borrowed pack",
+          "description": "Please set this pack aside and contact IMVO for assistance.",
+          "options": {}
+        }
+      ]
     },
     {
-      "ID": 2,
-      "Titel": "Cannot Decommission",
-      "Steps": ["B1"],
-      "OP-Codes": ["51220300", "51220800", "51220900", "51220900", "51320800", "51320900"]
-    }
-  ],
-  "Steps": [
-    {
-      "GuideID": 1,
-      "Schritt": "A1",
-        "QuestionTitel": "Pack cannot be reactivated.",
-      "Beschreibung": "This pack was decommissioned at another location and can only be reactivated at that location.",
-      "Frage": "Are you aware whether this pack been decommissioned on your behalf by the wholesaler or pharmacy you received it from?",
-      "Optionen": {
-        "A2": "Yes",
-        "A3": "No"
-      }
-    },
-    {
-      "GuideID": 1,
-      "Schritt": "A2",
-      "QuestionTitel": "Packs that have been supplied in one location may only be reactivated in the same location.",
-      "Beschreibung": "If you tried to reactivate the pack due to a procedural error, please document the root cause of the alert in NMVS Alerts. Once documented the investigation is complete and the pack may be returned to saleable stock.",
-      "Optionen": {}
-    },
-    {
-      "GuideID": 1,
-      "Schritt": "A3",
-      "QuestionTitel": "Is this a borrowed pack?",
-      "Optionen": {
-        "A4": "Yes",
-        "A5": "No"
-      }
-    },
-    {
-      "GuideID": 1,
-      "Schritt": "A4",
-      "QuestionTitel": "Borrowed pack",
-      "Beschreibung": "If the pack was decommissioned at the location you borrowed it from, you cannot reactivate it. If possible, ask the location you borrowed it from to reactivate it but that can only be done within 10 days of the pack getting decommissioned. If you are certain that the pack was previously decommissioned at another location due to a procedural error, please document the root cause of the alert in NMVS Alerts. Once documented the investigation is complete and the pack may be returned to saleable stock.",
-      "Optionen": {}
-    },
-    {
-      "GuideID": 1,
-      "Schritt": "A5",
-      "QuestionTitel": "Not borrowed pack",
-      "Beschreibung": "Please set this pack aside and contact IMVO for assistance.",
-      "Optionen": {}
-    },
-    {
-      "GuideID": 2,
-      "Schritt": "B1",
-      "QuestionTitel": "This pack has already been decommissioned.",
-      "Beschreibung": "Set the pack aside and contact IMVO for help with this alert. IMVO will need to run a pack audit trail for this pack to check the history of the pack because this is an uncommon alert.",
-      "Optionen": {}
+      "id": 2,
+      "title": "Cannot Decommission",
+      "opCodes": ["51220300", "51220800", "51220900", "51320800", "51320900"],
+      "steps": [
+        {
+          "step": "B1",
+          "questionTitle": "This pack has already been decommissioned.",
+          "description": "Set the pack aside and contact IMVO for help with this alert. IMVO will need to run a pack audit trail for this pack to check the history of the pack because this is an uncommon alert.",
+          "options": {}
+        }
+      ]
     }
   ]
 }
