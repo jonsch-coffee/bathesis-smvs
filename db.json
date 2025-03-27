@@ -1,11 +1,13 @@
 {
-  "Guideelements": [
+  "Guides": [
     {
+      "ID": 1,
       "Titel": "Cannot reactivate – Decommissionetiond at other location",
       "Steps": ["A1", "A2", "A3", "A4"],
       "OP-Codes": ["51420900"]
     },
     {
+      "ID": 2,
       "Titel": "Cannot Decommission",
       "Steps": ["B1"],
       "OP-Codes": ["51220300", "51220800", "51220900", "51220900", "51320800", "51320900"]
@@ -13,6 +15,7 @@
   ],
   "Steps": [
     {
+      "GuideID": 1,
       "Schritt": "A1",
         "QuestionTitel": "Pack cannot be reactivated.",
       "Beschreibung": "This pack was decommissioned at another location and can only be reactivated at that location.",
@@ -23,12 +26,14 @@
       }
     },
     {
+      "GuideID": 1,
       "Schritt": "A2",
       "QuestionTitel": "Packs that have been supplied in one location may only be reactivated in the same location.",
       "Beschreibung": "If you tried to reactivate the pack due to a procedural error, please document the root cause of the alert in NMVS Alerts. Once documented the investigation is complete and the pack may be returned to saleable stock.",
       "Optionen": {}
     },
     {
+      "GuideID": 1,
       "Schritt": "A3",
       "QuestionTitel": "Is this a borrowed pack?",
       "Optionen": {
@@ -37,18 +42,21 @@
       }
     },
     {
+      "GuideID": 1,
       "Schritt": "A4",
       "QuestionTitel": "Borrowed pack",
       "Beschreibung": "If the pack was decommissioned at the location you borrowed it from, you cannot reactivate it. If possible, ask the location you borrowed it from to reactivate it but that can only be done within 10 days of the pack getting decommissioned. If you are certain that the pack was previously decommissioned at another location due to a procedural error, please document the root cause of the alert in NMVS Alerts. Once documented the investigation is complete and the pack may be returned to saleable stock.",
       "Optionen": {}
     },
     {
+      "GuideID": 1,
       "Schritt": "A5",
       "QuestionTitel": "Not borrowed pack",
       "Beschreibung": "Please set this pack aside and contact IMVO for assistance.",
       "Optionen": {}
     },
     {
+      "GuideID": 2,
       "Schritt": "B1",
       "QuestionTitel": "This pack has already been decommissioned.",
       "Beschreibung": "Set the pack aside and contact IMVO for help with this alert. IMVO will need to run a pack audit trail for this pack to check the history of the pack because this is an uncommon alert.",
