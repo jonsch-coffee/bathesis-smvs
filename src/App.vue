@@ -1,25 +1,23 @@
-<!-- App.vue – ersetzt das alte UI durch den StepperSwitcher -->
 <template>
-  <!-- Hier wird nur noch die Stepper-Auswahl angezeigt  -->
-  <StepperSwitcher />
+  <v-app>
+    <v-main>
+      <!-- Verwende hier die importierte Komponente -->
+      <VuetifyStepperVertical />
+    </v-main>
+  </v-app>
 </template>
 
 <script>
-// Importiere die StepperSwitcher-Komponente
-import StepperSwitcher from './components/StepperSwitcher.vue'
+import VuetifyStepperVertical from './components/VuetifyStepperVertical.vue'
 
 export default {
-  name: 'App',
+  name: "App",
   components: {
-    StepperSwitcher
+    VuetifyStepperVertical
   }
 }
 </script>
 
 <style>
-/* Hier kannst du globale Styles einfügen (optional) */
-body {
-  margin: 0;
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-}
+/* Globale Styles (optional) */
 </style>

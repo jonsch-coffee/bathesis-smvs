@@ -1,52 +1,79 @@
 <template>
-    <!-- Linearer Stepper: Der Benutzer kann auch Schritte überspringen -->
-    <v-stepper v-model="step" class="elevation-1">
-      
-      <!-- Kopfzeile mit nummerierten Schritten -->
-      <v-stepper-header>
-        <!-- Schritt 1: Wird als abgeschlossen markiert, wenn step > 1 -->
-        <v-stepper-step :complete="step > 1" step="1">Start</v-stepper-step>
-        <v-divider></v-divider>
-      <!-- Schritt 2: z,B.eine Frage -->
-        <v-stepper-step :complete="step > 2" step="2">Frage</v-stepper-step>
-        <v-divider></v-divider>
-  
-        <!-- Schritt 3: Abschlussanzeige -->
-        <v-stepper-step step="3">Abschluss</v-stepper-step>
-      </v-stepper-header>
-  
-      <!-- Inhalte der einzelnen Schritte -->
-      <v-stepper-items>
-  
-        <v-stepper-content step="1">
-          <p>Dies ist der erste Schritt.</p>
-          <!-- Weiter-Button zum nächsten Schritt -->
-          <v-btn @click="step++" color="primary">Weiter</v-btn>
-        </v-stepper-content>
-  
-        <v-stepper-content step="2">
-          <p>Dies ist die Frage.</p>
-          <v-btn @click="step++" color="primary">Weiter</v-btn>
-          <v-btn @click="step--" text>Zurück</v-btn>
-        </v-stepper-content>
-  
-        <v-stepper-content step="3">
-          <p>Geschafft!</p>
-          <v-btn @click="step = 1" color="success">Neu starten</v-btn>
-        </v-stepper-content>
-  
-      </v-stepper-items>
-    </v-stepper>
-  </template>
-  
-  <script>
-  export default {
-    name: 'VuetifyStepperLinear',
-    data() {
-      return {
-        step: 1 // aktueller Schritt im Stepper
-      }
-    }
+  <v-stepper v-model="step" non-linear>
+    <!-- Linearer Stepper: Benutzer kann frei zwischen Schritten navigieren -->
+    <v-stepper-header>
+      <v-stepper-step :complete="step > 1" step="1" @click="step = 1">Frage 1</v-stepper-step>
+      <v-stepper-step :complete="step > 2" step="2" @click="step = 2">Antwort 1</v-stepper-step>
+      <v-stepper-step :complete="step > 3" step="3" @click="step = 3">Frage 2</v-stepper-step>
+      <v-stepper-step :complete="step > 4" step="4" @click="step = 4">Antwort 2</v-stepper-step>
+      <v-stepper-step step="5" @click="step = 5">Abschluss</v-stepper-step>
+    </v-stepper-header>
+
+    <v-stepper-items>
+      <v-stepper-content step="1">
+        <p>Ist der Code auf der Verpackung lesbar?</p>
+        <v-btn @click="selectAnswer('step1', 'yes')">Ja</v-btn>
+        <v-btn @click="selectAnswer('step1', 'no')">Nein</v-btn>
+      </v-stepper-content>
+
+      <v-stepper-content step="2">
+        <p>Du hast Frage 1 mit <strong>{{ answers.step1 }}</strong> beantwortet.</p>
+        <v-btn class="mt-2" @click="step = 3" :disabled="!answers.step1">Weiter</v-btn>
+      </v-stepper-content>
+
+      <v-stepper-content step="3">
+        <p>Ist das Medikament gültig registriert?</p>
+        <v-btn @click="selectAnswer('step2', 'yes')">Ja</v-btn>
+        <v-btn @click="selectAnswer('step2', 'no')">Nein</v-btn>
+      </v-stepper-content>
+
+      <v-stepper-content step="4">
+        <p>Du hast Frage 2 mit <strong>{{ answers.step2 }}</strong> beantwortet.</p>
+        <v-btn class="mt-2" @click="step = 5" :disabled="!answers.step2">Weiter</v-btn>
+      </v-stepper-content>
+
+      <v-stepper-content step="5">
+        <p>Die Befragung ist abgeschlossen.</p>
+        <ul>
+          <li>Frage 1: {{ answers.step1 }}</li>
+          <li>Frage 2: {{ answers.step2 }}</li>
+        </ul>
+        <v-btn class="mt-2" @click="reset">Neu starten</v-btn>
+      </v-stepper-content>
+    </v-stepper-items>
+  </v-stepper>
+</template>
+
+<script setup>
+import { ref } from 'vue'
+
+const step = ref(1)
+
+const answers = ref({
+  step1: null,
+  step2: null
+})
+
+function selectAnswer(question, value) {
+  answers.value[question] = value
+  step.value++
+}
+
+function reset() {
+  answers.value = {
+    step1: null,
+    step2: null
   }
-  </script>
-  
+  step.value = 1
+}
+</script>
+
+<style scoped>
+p {
+  margin-bottom: 1rem;
+}
+.text-red {
+  color: red;
+  font-weight: bold;
+}
+</style>
