@@ -8,16 +8,19 @@ import { ref, onMounted} from "vue";
 const route = useRoute()
 const guideId = route.params.id
 //const opCode = route.query.code
- const guide = ref(null)
-//onMounted(async () => {
-//  try {
-//    const {data} = await guideService.getGuideElement(guideId)
-//    guide.value = data
-//  } catch (error) {
-//    console.log(error)
-//  }
-//})
+const guide = ref(null)
+const loading = ref(true)
 
+onMounted(async () => {
+  try {
+    const { data } = await GuideService.getGuideElement(guideId)
+    guide.value = data
+  } finally {
+    loading.value = false
+  }
+})
+
+/*
 onMounted(() => {
   GuideService.getGuideElement(guideId)
       .then((response) => {
@@ -26,11 +29,17 @@ onMounted(() => {
       .catch((error) => {
         console.log(error)
       })
-})
+})*/
 </script>
 
-<template>
-  <h1>Guide {{ guideId }}</h1>
-  <pre>{{ guide }}</pre>
-  <!--<p>OP-Code: {{ opCode }}</p> -->
+<template>Hi
+  <div v-if="loading">
+    <p>Lade Daten…</p>
+  </div>
+  <div v-else>
+    <h1>{{ guide.title }}</h1>
+  </div>
+
+
+  <pre> {{ guide }}</pre>
 </template>
