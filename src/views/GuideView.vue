@@ -4,42 +4,37 @@
 /* eslint-disable */
 import { useRoute } from 'vue-router'
 import GuideService from '@/services/guideService'
-import { ref, onMounted} from "vue";
+import { ref } from "vue";
+
 const route = useRoute()
 const guideId = route.params.id
 //const opCode = route.query.code
-const guide = ref(null)
-const loading = ref(true)
 
-onMounted(async () => {
-  try {
-    const { data } = await GuideService.getGuideElement(guideId)
-    guide.value = data
-  } finally {
-    loading.value = false
+const guide = ref({
+  loading: true,
+  error: false,
+  data: {
+    title: 'Loading...',
+    opCodes: [],
+    steps: []
   }
 })
 
-/*
-onMounted(() => {
-  GuideService.getGuideElement(guideId)
-      .then((response) => {
-        guide.value = response.data
-      })
-      .catch((error) => {
-        console.log(error)
-      })
-})*/
+GuideService.getGuideElement(guideId)
+    .then((response) => {
+      guide.value.loading = false
+      guide.value.data = response.data
+    })
+    .catch((error) => {
+      console.log(error)
+      guide.value.loading = false
+      guide.value.error = true
+    })
+
 </script>
 
-<template>Hi
-  <div v-if="loading">
-    <p>Lade Daten…</p>
-  </div>
-  <div v-else>
-    <h1>{{ guide.title }}</h1>
-  </div>
-
-
-  <pre> {{ guide }}</pre>
+<template>
+  <h1>{{ guide.data.title }}</h1>
+  <p>{{ guide.data.opCodes }}</p>
+  <pre>{{ guide.loading ? '' : guide.data }}</pre>
 </template>
