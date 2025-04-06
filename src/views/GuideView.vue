@@ -8,7 +8,6 @@ import { ref } from "vue";
 
 const route = useRoute()
 const guideId = route.params.id
-//const opCode = route.query.code
 
 const guide = ref({
   loading: true,

@@ -14,5 +14,8 @@ const apiClient = axios.create({
 export default {
     getGuideElement(id) {
         return apiClient.get(`/guides/${id}`)
+    },
+    getGuideFromOPCode(opcode) {
+        return apiClient.get(`/opcodes?code=${opcode}`)
     }
 }
