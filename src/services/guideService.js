@@ -17,5 +17,8 @@ export default {
     },
     getGuideFromOPCode(opcode) {
         return apiClient.get(`/opcodes?code=${opcode}`)
+    },
+    getGuideSuggestions(currentValue) {
+        return apiClient.get(`/opcodes/?code_like=${currentValue}`)
     }
 }
