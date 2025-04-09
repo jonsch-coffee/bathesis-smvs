@@ -68,7 +68,9 @@ function goToStep(nextStepId) {
   <div class="row">
     <div class="col"></div>
     <div class="col-6"><br>
-      <h2>{{ currentStep.questionTitle }}</h2>
+      <div class="alert alert-secondary" role="alert">
+        <h2>{{ currentStep.questionTitle }}</h2>
+      </div>
     </div>
     <div class="col"></div>
   </div>
@@ -81,7 +83,7 @@ function goToStep(nextStepId) {
   <div class="row">
     <div class="col"></div>
     <div class="col-6">
-      <p>{{ currentStep.question }}</p>
+      <p>{{ currentStep.question }}</p><br>
       <div
            v-for="(value, key) in currentStep.options"
            :key="key"
