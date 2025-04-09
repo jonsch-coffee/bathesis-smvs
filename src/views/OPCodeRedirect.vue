@@ -14,6 +14,8 @@ const responseObject = ref({
   data: {}
 })
 
+const response = null
+
 GuideService.getGuideFromOPCode(opcode)
     .then((response) => {
       responseObject.value.data = response.data[0] || {} // fallback falls leer
