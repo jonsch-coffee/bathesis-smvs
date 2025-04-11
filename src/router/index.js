@@ -3,12 +3,14 @@ import { createRouter, createWebHistory } from 'vue-router'
 import GuideView from '@/views/GuideView.vue'
 import HomeView from "@/views/HomeView.vue";
 import OPCodeRedirect from "@/views/OPCodeRedirect.vue";
+import GuideEditor from "@/views/GuideEditor.vue";
 
 
 const routes = [
     { path: '/', component: HomeView },
     { path: '/guide/:id', component: GuideView },
     { path: '/opcode/:opcode', component: OPCodeRedirect },
+    { path: '/editor/', component: GuideEditor },
 ]
 
 const router = createRouter({
