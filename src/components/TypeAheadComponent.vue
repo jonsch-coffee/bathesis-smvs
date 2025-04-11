@@ -7,7 +7,7 @@ import { useRouter } from 'vue-router'
 import { ref, watch } from "vue";
 
 import GuideService from '@/services/guideService'
-// TODO put in TypeAhead-Component
+// TODO put in TypeAheadComponent-Component
 const router = useRouter()
 const query = ref('')
 const suggestions = ref([])

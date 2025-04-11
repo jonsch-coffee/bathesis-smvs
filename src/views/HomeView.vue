@@ -2,7 +2,7 @@
 
 <script setup>
 /* eslint-disable */
-import TypeAhead from '@/components/TypeAhead.vue'
+import TypeAheadComponent from '@/components/TypeAheadComponent.vue'
 
 </script>
 
@@ -12,7 +12,7 @@ import TypeAhead from '@/components/TypeAhead.vue'
       <div class="col"></div>
       <div class="col-6">
         <h1>OP-Code Search</h1>
-        <TypeAhead />
+        <TypeAheadComponent />
       </div>
       <div class="col"></div>
     </div>
