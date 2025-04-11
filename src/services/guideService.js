@@ -12,13 +12,16 @@ const apiClient = axios.create({
 })
 
 export default {
-    getGuideElement(id) {
+    getGuideElement(id) { // Get a specific guide-element by id
         return apiClient.get(`/guides/${id}`)
     },
-    getGuideFromOPCode(opcode) {
+    getGuideFromOPCode(opcode) { // Get a specific guide-element by it's associated operation-code
         return apiClient.get(`/opcodes?code=${opcode}`)
     },
-    getGuideSuggestions(currentValue) {
+    getGuideSuggestions(currentValue) { // Get type-ahead hints
         return apiClient.get(`/opcodes/?code_like=${currentValue}`)
+    },
+    getAllGuides() { // Get all guides
+        return apiClient.get('/guides')
     }
 }
