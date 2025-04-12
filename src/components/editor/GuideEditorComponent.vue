@@ -164,6 +164,36 @@ function handleCodeChange(event, code) {
   }
 }
 
+function exportLocalStorageData() {
+  const guides = JSON.parse(localStorage.getItem('smvs_guides') || '[]')
+
+  // Extrahiere alle OpCodes mit Referenz zum Guide
+  const opcodes = guides.flatMap(guide =>
+      (guide.opCodes || []).map(code => ({
+        code,
+        guideId: guide.id
+      }))
+  )
+
+  const exportData = {
+    guides,
+    opcodes
+  }
+
+  const blob = new Blob([JSON.stringify(exportData, null, 2)], {
+    type: 'application/json'
+  })
+
+  const url = URL.createObjectURL(blob)
+  const link = document.createElement('a')
+  link.href = url
+  link.download = uuidv4() + '-export.json'
+  document.body.appendChild(link)
+  link.click()
+  document.body.removeChild(link)
+}
+
+
 </script>
 
 <template>
@@ -177,6 +207,7 @@ function handleCodeChange(event, code) {
   </select>
   <div class="btn-group" role="group" >
     <button class="btn btn-info" @click="createNewGuide">➕</button>
+    <button class="btn btn-info" @click="exportLocalStorageData">📦</button>
     <button class="btn btn-danger" @click="clearLocalStorage">🧹</button>
   </div>
   <hr>
