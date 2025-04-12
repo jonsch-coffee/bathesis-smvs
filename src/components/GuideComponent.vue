@@ -39,8 +39,8 @@ GuideService.getGuideElement(guideId)
     })
 
 function goToStep(nextStepId) {
-  prevStep.value = currentStep.value.step
-  const next = guide.value.data.steps.find(s => s.step === nextStepId)
+  prevStep.value = currentStep.value.id
+  const next = guide.value.data.steps.find(s => s.id === nextStepId)
   if(next) currentStep.value = next
 }
 
