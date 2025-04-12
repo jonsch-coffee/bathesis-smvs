@@ -56,7 +56,7 @@
         {
           "step": "A5",
           "questionTitle": "Not borrowed pack",
-          "description": "Please set this pack aside and contact IMVO for assistance.",
+          "description": "Please set this pack aside and contact SMVS GmbH for assistance.",
           "options": []
         }
       ]
@@ -75,7 +75,7 @@
         {
           "step": "B1",
           "questionTitle": "This pack has already been decommissioned.",
-          "description": "Set the pack aside and contact IMVO for help with this alert. IMVO will need to run a pack audit trail for this pack to check the history of the pack because this is an uncommon alert.",
+          "description": "Set the pack aside and contact SMVS GmbH for help with this alert. SMVS GmbH will need to run a pack audit trail for this pack to check the history of the pack because this is an uncommon alert.",
           "options": []
         }
       ]
