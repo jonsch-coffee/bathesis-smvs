@@ -9,7 +9,7 @@ const props = defineProps(['option', 'availableSteps'])
 
     <select v-model="option.target">
       <option disabled value="">Ziel wählen</option>
-      <option v-for="s in availableSteps" :value="s.id">{{ s.title }}</option>
+      <option v-for="s in availableSteps" :value="s.id">{{ s.questionTitle }}</option>
     </select>
 
     <a v-if="option.target" :href="'#' + option.target">

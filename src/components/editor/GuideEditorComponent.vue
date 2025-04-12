@@ -20,7 +20,7 @@ const hasChanges = ref(false) // Notify user wether changes have occured
 
 const guide = reactive({
   id: null,
-  title: '',
+  questionTitle: '',
   steps: [],
   opCodes: []
 })
@@ -44,7 +44,6 @@ onMounted(async () => {
     const { data } = await GuideService.getAllGuides()
     allGuides.value = data
     localStorage.setItem(LOCAL_KEY_GUIDES, JSON.stringify(data)) // Create a copy of remote-data
-    // TODO create a list with all OP CODEs
 
     // Flatten and dedupe opcodes
     const opSet = new Set()
@@ -78,8 +77,8 @@ function createNewGuide() {
 function addStep() {
   guide.steps.push({
     id: uuidv4(),
-    title: `Schritt ${guide.steps.length + 1}`,
-    question: '',
+    questionTitle: `Schritt ${guide.steps.length + 1}`,
+    description: '',
     options: []
   })
 }
@@ -109,7 +108,7 @@ function addOpCode(code) {
 
 
 function clearLocalStorage() {
-  if (confirm('Möchtest du den lokalen Cache wirklich löschen?')) {
+  if (confirm('Möchtest du die Änderungen wirklich löschen?')) {
     localStorage.removeItem(LOCAL_KEY_GUIDES)
     localStorage.removeItem(LOCAL_KEY_OPCODES)
     location.reload()
@@ -181,7 +180,7 @@ function handleCodeChange(event, code) {
 
   <div v-if="hasChanges" style="color: red;">💾 Ungespeicherte Änderungen!</div>
   <button @click="clearLocalStorage" style="background: crimson; color: white; margin-top: 1rem;">
-    🧹 Cache leeren (localStorage)
+    🧹 Änderungen löschen
   </button>
 
 

@@ -17,8 +17,8 @@ function addOption() {
 
 <template>
   <div class="step">
-    <input v-model="step.title" placeholder="Titel des Schritts" />
-    <textarea v-model="step.question" placeholder="Frage..." />
+    <input v-model="step.questionTitle" placeholder="Titel des Schritts" />
+    <textarea v-model="step.description" placeholder="Frage..." />
 
     <OptionEditorComponent
         v-for="o in step.options"
