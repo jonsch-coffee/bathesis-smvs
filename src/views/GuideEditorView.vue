@@ -3,5 +3,7 @@ import GuideEditor from '@/components/editor/GuideEditorComponent.vue'
 </script>
 
 <template>
-  <GuideEditor />
+  <div class="container">
+    <GuideEditor />
+  </div>
 </template>

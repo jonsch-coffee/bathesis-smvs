@@ -39,7 +39,7 @@ GuideService.getGuideElement(guideId)
     })
 
 function goToStep(nextStepId) {
-  prevStep.value = currentStep.value.step // TODO one step back in history
+  prevStep.value = currentStep.value.step
   const next = guide.value.data.steps.find(s => s.step === nextStepId)
   if(next) currentStep.value = next
 }
@@ -85,12 +85,12 @@ function goToStep(nextStepId) {
     <div class="col-6">
       <p>{{ currentStep.question }}</p><br>
       <div
-           v-for="(value, key) in currentStep.options"
-           :key="key"
-           @click="goToStep(key)"
+           v-for="value in currentStep.options"
+           :key="value.id"
+           @click="goToStep(value.target)"
       >
         <button class="btn btn-dark">
-          {{ value }}
+          {{ value.label }}
         </button><br>
       </div>
     </div>

@@ -19,8 +19,8 @@ const opCodeSearch = ref('') // search-results
 const hasChanges = ref(false) // Notify user wether changes have occured
 
 const guide = reactive({
-  id: null,
-  questionTitle: '',
+  id: uuidv4(),
+  title: '',
   steps: [],
   opCodes: []
 })
@@ -167,55 +167,55 @@ function handleCodeChange(event, code) {
 </script>
 
 <template>
+  <br>
   <h2>Guide Editor</h2>
+  <br>
 
-  <label>Neuen OP-Code hinzufügen:</label>
-  <input v-model="newOpCode" placeholder="z.B. 51220300" />
-  <button @click="addOpCode(newOpCode)">➕ Hinzufügen</button>
-
-  <p v-if="opCodeError" style="color: red;">{{ opCodeError }}</p>
-
-  <pre>{{opcodes}}</pre>
-  <hr>
-
-  <div v-if="hasChanges" style="color: red;">💾 Ungespeicherte Änderungen!</div>
-  <button @click="clearLocalStorage" style="background: crimson; color: white; margin-top: 1rem;">
-    🧹 Änderungen löschen
-  </button>
-
-
-  <select v-model="selectedGuideId" @change="loadGuide">
+  <select class="form-select" v-model="selectedGuideId" @change="loadGuide">
     <option disabled value="">-- Guide wählen --</option>
     <option v-for="g in allGuides" :key="g.id" :value="g.id">{{ g.title }}</option>
   </select>
+  <div class="btn-group" role="group" >
+    <button class="btn btn-info" @click="createNewGuide">➕</button>
+    <button class="btn btn-danger" @click="clearLocalStorage">🧹</button>
+  </div>
+  <hr>
+  <div class="row g-0">
 
-  <button @click="createNewGuide">+ Neuer Guide</button>
+    <div class="col-sm-6 col-md-8">
+      <input v-model="guide.title" placeholder="Guide-Titel" class="form-control" /><br>
+      <StepEditorComponent v-for="s in guide.steps" :key="s.id" :step="s" :steps="guide.steps" />
+      <button @click="addStep">➕ Schritt</button>
+    </div>
 
-  <input v-model="guide.title" placeholder="Guide-Titel" />
-  <br><!-- Select OP-Code -->
-  <div class="opcodes-select">
-    <label>OP-Codes zuweisen:</label>
-    <input v-model="opCodeSearch" placeholder="OP-Code suchen..." />
+    <!-- Right menu -->
+    <div class="col-6 col-md-4" style="  border-left: 3px solid black; padding-left: 10px;  ">
+      <h4>Operation Codes</h4>
+      <input v-model="newOpCode" placeholder="z.B. 51220300" />
+      <button @click="addOpCode(newOpCode)">➕ Hinzufügen</button>
 
-    <div v-for="code in filteredOpcodes" :key="code" >
-      <label>
-        <input
-            type="checkbox"
-            :value="code"
-            :checked="guide.opCodes.includes(code)"
-            :disabled="isCodeAssignedToAnotherGuide(code)"
-            @change="handleCodeChange($event, code)"
+      <p v-if="opCodeError" style="color: red;">{{ opCodeError }}</p>
 
-        />
+      <!-- Select OP-Code -->
+      <div class="opcodes-select">
+        <input v-model="opCodeSearch" placeholder="OP-Code suchen..." />
 
-        {{ code }}
-          <span v-if="notUsed(code)" style="color: blue;"> (nicht zugewiesen)</span>
-      </label>
+        <div v-for="code in filteredOpcodes" :key="code" >
+          <label>
+            <input
+                type="checkbox"
+                :value="code"
+                :checked="guide.opCodes.includes(code)"
+                :disabled="isCodeAssignedToAnotherGuide(code)"
+                @change="handleCodeChange($event, code)"
+
+            />
+            {{ code }}
+            <span v-if="notUsed(code)" style="color: blue;"> (nicht zugewiesen)</span>
+          </label>
+        </div>
+      </div>
     </div>
   </div>
 
-  <StepEditorComponent v-for="s in guide.steps" :key="s.id" :step="s" :steps="guide.steps" />
-  <button @click="addStep">+ Schritt hinzufügen</button>
-
-  <pre>{{ guide }}</pre>
 </template>
