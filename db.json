@@ -1,68 +1,68 @@
 {
   "guides": [
     {
-  "id": 1744474836672,
-  "title": "Cannot reactivate – Decommissioned at other location",
-  "steps": [
-    {
-      "id": "b8ec4e9f-4d4d-4f4a-b0c4-867ae76c9d64",
-      "questionTitle": "Pack cannot be reactivated.",
-      "description": "This pack was decommissioned at another location and can only be reactivated at that location.\n\nAre you aware whether this pack has been decommissioned on your behalf by the wholesaler or pharmacy you received it from?",
-      "options": [
+      "id": 1744474836672,
+      "title": "Cannot reactivate - Decommissioned at other location",
+      "steps": [
         {
-          "id": "97927659-ff20-4851-8e35-721eaea2ecae",
-          "label": "Yes",
-          "target": "e392871f-b80a-47c5-a42d-3de406aa24b3"
+          "id": "b8ec4e9f-4d4d-4f4a-b0c4-867ae76c9d64",
+          "questionTitle": "Pack cannot be reactivated.",
+          "description": "This pack was decommissioned at another location and can only be reactivated at that location.\n\nAre you aware whether this pack has been decommissioned on your behalf by the wholesaler or pharmacy you received it from?",
+          "options": [
+            {
+              "id": "97927659-ff20-4851-8e35-721eaea2ecae",
+              "label": "Yes",
+              "target": "e392871f-b80a-47c5-a42d-3de406aa24b3"
+            },
+            {
+              "id": "68e6005a-ecaf-4823-bf43-1eb13f7c2cff",
+              "label": "No",
+              "target": "9c1a4bb9-d181-493f-92b2-7bf8889504ee"
+            }
+          ]
         },
         {
-          "id": "68e6005a-ecaf-4823-bf43-1eb13f7c2cff",
-          "label": "No",
-          "target": "9c1a4bb9-d181-493f-92b2-7bf8889504ee"
-        }
-      ]
-    },
-    {
-      "id": "e392871f-b80a-47c5-a42d-3de406aa24b3",
-      "questionTitle": "Packs that have been supplied in one location may only be reactivated in the same location.",
-      "description": "If you tried to reactivate the pack due to a procedural error, please document the root cause of the alert in NMVS Alerts. Once documented, the investigation is complete and the pack may be returned to saleable stock.",
-      "options": []
-    },
-    {
-      "id": "9c1a4bb9-d181-493f-92b2-7bf8889504ee",
-      "questionTitle": "Is this a borrowed pack?",
-      "description": "",
-      "options": [
-        {
-          "id": "e5214e28-36ad-4abb-891f-63378309a2e2",
-          "label": "Yes",
-          "target": "b4745398-782a-43a6-8592-b32c3875a1e1"
+          "id": "e392871f-b80a-47c5-a42d-3de406aa24b3",
+          "questionTitle": "Packs that have been supplied in one location may only be reactivated in the same location.",
+          "description": "If you tried to reactivate the pack due to a procedural error, please document the root cause of the alert in NMVS Alerts. Once documented, the investigation is complete and the pack may be returned to saleable stock.",
+          "options": []
         },
         {
-          "id": "3a89d5b1-c2a3-441d-8609-b4e1197f3faa",
-          "label": "No",
-          "target": "2cd665c9-1a6f-4e98-a11b-403cb0449d18"
+          "id": "9c1a4bb9-d181-493f-92b2-7bf8889504ee",
+          "questionTitle": "Is this a borrowed pack?",
+          "description": "",
+          "options": [
+            {
+              "id": "e5214e28-36ad-4abb-891f-63378309a2e2",
+              "label": "Yes",
+              "target": "b4745398-782a-43a6-8592-b32c3875a1e1"
+            },
+            {
+              "id": "3a89d5b1-c2a3-441d-8609-b4e1197f3faa",
+              "label": "No",
+              "target": "2cd665c9-1a6f-4e98-a11b-403cb0449d18"
+            }
+          ]
+        },
+        {
+          "id": "b4745398-782a-43a6-8592-b32c3875a1e1",
+          "questionTitle": "Borrowed pack",
+          "description": "If the pack was decommissioned at the location you borrowed it from, you cannot reactivate it. If possible, ask the location you borrowed it from to reactivate it, but that can only be done within 10 days of the pack getting decommissioned. If you are certain that the pack was previously decommissioned at another location due to a procedural error, please document the root cause of the alert in NMVS Alerts. Once documented, the investigation is complete and the pack may be returned to saleable stock.",
+          "options": []
+        },
+        {
+          "id": "2cd665c9-1a6f-4e98-a11b-403cb0449d18",
+          "questionTitle": "Not borrowed pack",
+          "description": "Please set this pack aside and contact IMVO for assistance.",
+          "options": []
         }
-      ]
-    },
-    {
-      "id": "b4745398-782a-43a6-8592-b32c3875a1e1",
-      "questionTitle": "Borrowed pack",
-      "description": "If the pack was decommissioned at the location you borrowed it from, you cannot reactivate it. If possible, ask the location you borrowed it from to reactivate it, but that can only be done within 10 days of the pack getting decommissioned. If you are certain that the pack was previously decommissioned at another location due to a procedural error, please document the root cause of the alert in NMVS Alerts. Once documented, the investigation is complete and the pack may be returned to saleable stock.",
-      "options": []
-    },
-    {
-      "id": "2cd665c9-1a6f-4e98-a11b-403cb0449d18",
-      "questionTitle": "Not borrowed pack",
-      "description": "Please set this pack aside and contact IMVO for assistance.",
-      "options": []
-    }
-  ],
-  "opCodes": [
-        "51420900"
       ],
-  },
+      "opCodes": [
+        "51420900"
+      ]
+    },
     {
-      "id": 2,
+      "id": 1783888107,
       "title": "Cannot Decommission",
       "opCodes": [
         "51220300",
@@ -73,7 +73,7 @@
       ],
       "steps": [
         {
-          "step": "B1",
+          "id": "201fa989-86c0-407d-9cd8-67424e15651b",
           "questionTitle": "This pack has already been decommissioned.",
           "description": "Set the pack aside and contact SMVS GmbH for help with this alert. SMVS GmbH will need to run a pack audit trail for this pack to check the history of the pack because this is an uncommon alert.",
           "options": []
@@ -88,23 +88,23 @@
     },
     {
       "code": "51220300",
-      "guideId": 2
+      "guideId": 1783888107
     },
     {
       "code": "51220800",
-      "guideId": 2
+      "guideId": 1783888107
     },
     {
       "code": "51220900",
-      "guideId": 2
+      "guideId": 1783888107
     },
     {
       "code": "51320800",
-      "guideId": 2
+      "guideId": 1783888107
     },
     {
       "code": "51320900",
-      "guideId": 2
+      "guideId": 1783888107
     }
   ]
 }
