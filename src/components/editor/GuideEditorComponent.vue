@@ -132,19 +132,39 @@ watch(opcodes, () => {
   hasChanges.value = true // Remind user to export the data
 })
 
-function alertDoubleAssignment(code) {
-  if(doubleAssignment(code)) {
-    alert("Der OP-Code wurde doppelt zugewiesen!")
+
+function notUsed(code) {
+  return allGuides.value.filter(g => g.opCodes.includes(code)).length === 0
+}
+
+function isCodeAssignedToAnotherGuide(code) {
+  return allGuides.value.some(g =>
+      g.opCodes.includes(code) && g.id !== guide.id
+  )
+}
+
+
+function handleCodeChange(event, code) {
+  const isChecked = event.target.checked
+  const assignedTo =
+        allGuides.value.find(g =>
+              g.opCodes.includes(code) && // check if the opcode is used in the currently compared guide element
+              g.id !== guide.id // but not the current guide worked on
+        )
+
+  if (isChecked && assignedTo) {
+    alert(`OP-Code ${code} ist bereits Guide "${assignedTo.title}" zugewiesen.`)
+    event.target.checked = false // uncheck the checkbox
+    return // quit function
+  }
+
+  if (isChecked) { // if is checked and not interrupted push to guide-element opcodes
+    guide.opCodes.push(code)
+  } else {
+    guide.opCodes = guide.opCodes.filter(c => c !== code)
   }
 }
 
-function doubleAssignment(code) {
-  return allGuides.value.filter(g => g.opCodes.includes(code)).length > 1
-}
-
-function alreadyUsed(code) {
-  return allGuides.value.filter(g => g.opCodes.includes(code)).length == 1
-}
 </script>
 
 <template>
@@ -178,16 +198,19 @@ function alreadyUsed(code) {
     <label>OP-Codes zuweisen:</label>
     <input v-model="opCodeSearch" placeholder="OP-Code suchen..." />
 
-    <div v-for="code in filteredOpcodes" :key="code" @change="alertDoubleAssignment(code)">
+    <div v-for="code in filteredOpcodes" :key="code" >
       <label>
         <input
             type="checkbox"
             :value="code"
-            v-model="guide.opCodes"
+            :checked="guide.opCodes.includes(code)"
+            :disabled="isCodeAssignedToAnotherGuide(code)"
+            @change="handleCodeChange($event, code)"
+
         />
+
         {{ code }}
-          <span v-if="alreadyUsed(code)" style="color: green;"> (bereits verwendet)</span>
-          <span v-else-if="doubleAssignment(code)" style="color: red;"> (Doppelt zugewiesen!)</span>
+          <span v-if="notUsed(code)" style="color: blue;"> (nicht zugewiesen)</span>
       </label>
     </div>
   </div>
