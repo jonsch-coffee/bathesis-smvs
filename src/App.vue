@@ -8,11 +8,11 @@ import { useRouter } from 'vue-router'
 const router = useRouter()
 
 function handleKeyboardShortcut(e) {
-  if (e.ctrlKey && e.shiftKey && e.key.toLowerCase() === 'e') {
+  if (e.ctrlKey && e.key.toLowerCase() === 'e') {
     e.preventDefault()
     router.push('/editor')
   }
-  if (e.ctrlKey && e.shiftKey && e.key.toLowerCase() === 'x') {
+  if (e.ctrlKey && e.key.toLowerCase() === 'x') {
     e.preventDefault()
     router.push('/')
   }

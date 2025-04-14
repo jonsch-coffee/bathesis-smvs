@@ -1,3 +1,6 @@
+### Recommanded IDEs
+JetBrains Webstorm
+
 ### Run DEV
 ```
 npm install
