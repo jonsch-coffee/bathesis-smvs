@@ -1,13 +1,11 @@
 import axios from 'axios'
 
-console.log(process.env.VUE_APP_JWT_TOKEN)
-
 const apiClient = axios.create({
     baseURL: process.env.VUE_APP_API_URL,
+    withCredentials: false,
     headers: {
         'Accept': 'application/json',
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${process.env.VUE_APP_JWT_TOKEN}`
+        'Content-Type': 'application/json'
     }
 })
 
