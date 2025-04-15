@@ -1,7 +1,6 @@
 import axios from 'axios'
 
-//const API_BASE = 'http://localhost:8000' // Adjust to your backend URL
-//const JWT_TOKEN = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcHAiOiJzbXZzX29wLXNlYXJjaCJ9.v1mKTy04jQIBzRuWGIY9UH0ULcft_L6NhF9ZWRPJ4do';
+console.log(process.env.VUE_APP_JWT_TOKEN)
 
 const apiClient = axios.create({
     baseURL: process.env.VUE_APP_API_URL,

@@ -8,7 +8,7 @@ app = FastAPI()
 generate_token()
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:8080"],  # TODO: Replace for production. Only in TESTING!!!
+    allow_origins=["http://localhost:8080", "https://smvs-gmbh-op-code-search-engine.onrender.com/"],  # TODO: Replace for production. Only in TESTING!!!
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
