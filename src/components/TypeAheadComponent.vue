@@ -38,7 +38,7 @@ function goToGuide(guideId) {
     <input
         type="text"
         v-model="query"
-        placeholder="OP-Code eingeben..."
+        placeholder="Den Operation-Code aus der Alertmeldung eingeben, zB.: 5120900"
         class="form-control mb-3"
     />
 

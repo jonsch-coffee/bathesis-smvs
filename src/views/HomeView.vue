@@ -3,6 +3,7 @@
 <script setup>
 /* eslint-disable */
 import TypeAheadComponent from '@/components/TypeAheadComponent.vue'
+import owlImage from "@/assets/images/op-owl.png";
 
 </script>
 
@@ -11,7 +12,7 @@ import TypeAheadComponent from '@/components/TypeAheadComponent.vue'
     <div class="row">
       <div class="col"></div>
       <div class="col-6">
-        <h1>OP-Code Search</h1>
+        <img class="op-owl" :src="owlImage" alt="OP Owl" />
         <TypeAheadComponent />
       </div>
       <div class="col"></div>
