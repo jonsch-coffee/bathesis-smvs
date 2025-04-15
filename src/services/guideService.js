@@ -1,13 +1,14 @@
 import axios from 'axios'
 
-const API_BASE = 'https://my-json-server.typicode.com/jonsch-coffee/bathesis-smvs'
+const API_BASE = 'http://localhost:8000' // Adjust to your backend URL
+const JWT_TOKEN = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcHAiOiJzbXZzX29wLXNlYXJjaCJ9.v1mKTy04jQIBzRuWGIY9UH0ULcft_L6NhF9ZWRPJ4do';
 
 const apiClient = axios.create({
     baseURL: API_BASE,
-    withCredentials: false,
     headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json'
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${JWT_TOKEN}`
     }
 })
 
@@ -19,9 +20,15 @@ export default {
         return apiClient.get(`/opcodes?code=${opcode}`)
     },
     getGuideSuggestions(currentValue) { // Get type-ahead hints
-        return apiClient.get(`/opcodes/?code_like=${currentValue}`)
+        return apiClient.get(`/opcodes?code_like=${currentValue}`)
     },
     getAllGuides() { // Get all guides
         return apiClient.get('/guides')
+    },
+    updateGuide(guide) {
+        return apiClient.patch(`/guides/${guide.id}`, guide);
+    },
+    deleteGuide(id) {
+        return apiClient.delete(`/guides/${id}`)
     }
 }

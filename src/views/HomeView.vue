@@ -12,7 +12,7 @@ import owlImage from "@/assets/images/op-owl.png";
     <div class="row">
       <div class="col"></div>
       <div class="col-6">
-        <img class="op-owl" :src="owlImage" alt="OP Owl" />
+        <img class="op-owl" :src="owlImage" alt="OP Owl by ChatGPT" />
         <TypeAheadComponent />
       </div>
       <div class="col"></div>

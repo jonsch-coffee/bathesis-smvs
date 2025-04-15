@@ -6,6 +6,8 @@ import { v4 as uuidv4 } from 'uuid'
 import StepEditorComponent from './StepEditorComponent.vue'
 import GuideService from '@/services/guideService'
 
+import debounce from 'lodash/debounce'
+
 const LOCAL_KEY_GUIDES = 'smvs_guides'
 const LOCAL_KEY_OPCODES = "opcodes"
 const allGuides = ref([])
@@ -54,6 +56,28 @@ onMounted(async () => {
     localStorage.setItem(LOCAL_KEY_OPCODES, JSON.stringify(opcodes.value))
   }
 })
+
+function deleteGuide() {
+  if (!selectedGuideId.value) return
+  const guideToBeDeleted = allGuides.value.find(g => g.id === selectedGuideId.value) // Remark: filter gibt ein Array zurück. Find ist hier besser
+
+  const confirmDelete = window.confirm(`Bist du sicher, dass du den Guide "${guideToBeDeleted.title}" löschen möchtest?`)
+  if (!confirmDelete) return
+
+
+  GuideService.deleteGuide(selectedGuideId.value)
+      .then(() => {
+        // Remove locally
+        allGuides.value = allGuides.value.filter(g => g.id !== selectedGuideId.value)
+        localStorage.setItem('guides', JSON.stringify(allGuides.value))
+        selectedGuideId.value = ''
+        alert('🗑️ Guide erfolgreich gelöscht.')
+      })
+      .catch(err => {
+        console.error("Fehler beim Löschen:", err)
+        alert('❌ Fehler beim Löschen des Guides.')
+      })
+}
 
 function loadGuide() {
   const selected = allGuides.value.find(g => g.id === selectedGuideId.value)
@@ -108,7 +132,7 @@ function addOpCode(code) {
 
 
 function clearLocalStorage() {
-  if (confirm('Möchtest du die Änderungen wirklich löschen?')) {
+  if (confirm('Lokale Änderungen zurücksetzen?')) {
     localStorage.removeItem(LOCAL_KEY_GUIDES)
     localStorage.removeItem(LOCAL_KEY_OPCODES)
     location.reload()
@@ -126,10 +150,19 @@ watch(guide, () => {
   }
 }, { deep: true })
 
-
+/*
+* DEPRECATED! - TODO: Remove
+* */
 watch(opcodes, () => {
   hasChanges.value = true // Remind user to export the data
 })
+
+const debouncedUpdate = debounce(() => {
+  GuideService.updateGuide(guide)
+      .then(() => console.log("✅ Guide gespeichert"))
+}, 1000)
+
+watch(guide, debouncedUpdate, { deep: true })
 
 
 function notUsed(code) {
@@ -213,6 +246,9 @@ function exportLocalStorageData() {
         :to="{ name: 'home' }"
     >X
     </router-link>
+    <button class="btn btn-danger" @click="deleteGuide">
+      🗑️
+    </button>
     <button class="btn btn-danger" @click="clearLocalStorage">🧹</button>
   </div>
   <hr>
