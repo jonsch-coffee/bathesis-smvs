@@ -7,7 +7,7 @@ import GuideEditorView from "@/views/GuideEditorView.vue";
 
 
 const routes = [
-    { path: '/', component: HomeView },
+    { path: '/', name: 'home', component: HomeView },
     { path: '/guide/:id', component: GuideView },
     { path: '/opcode/:opcode', component: OPCodeRedirect },
     { path: '/editor/', component: GuideEditorView },

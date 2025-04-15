@@ -198,7 +198,8 @@ function exportLocalStorageData() {
 
 <template>
   <br>
-  <h2>Guide Editor</h2>
+  <h2 v-if="guide.title">{{ guide.title }}</h2>
+  <h2 v-else>Bitte einen Guide auswählen:</h2>
   <br>
 
   <select class="form-select" v-model="selectedGuideId" @change="loadGuide">
@@ -208,6 +209,10 @@ function exportLocalStorageData() {
   <div class="btn-group" role="group" >
     <button class="btn btn-info" @click="createNewGuide">➕</button>
     <button class="btn btn-info" @click="exportLocalStorageData">📦</button>
+    <router-link class="btn btn-info"
+        :to="{ name: 'home' }"
+    >X
+    </router-link>
     <button class="btn btn-danger" @click="clearLocalStorage">🧹</button>
   </div>
   <hr>
