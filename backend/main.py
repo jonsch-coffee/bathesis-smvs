@@ -27,9 +27,9 @@ def get_guides():
     return get_all_guides()
 
 @app.patch("/guides/{guide_id}")
-def put_guide(guide_id: int, updated: dict, credentials: dict = Depends(verify_token)):
+def put_guide(guide_id: int, updated: dict):
     return put_guide_crud(guide_id, updated)
 
 @app.delete("/guides/{guide_id}")
-def delete_guide(guide_id: int, credentials: dict = Depends(verify_token)):
+def delete_guide(guide_id: int):
     return delete_guide_crud(guide_id)
