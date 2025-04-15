@@ -23,8 +23,5 @@ export default {
     },
     getAllGuides() { // Get all guides
         return apiClient.get('/guides')
-    },
-    getAllOpCodes() { // Get all guides
-        return apiClient.get('/opcodes')
     }
 }

@@ -1,6 +1,12 @@
 #app {
-    background-color: #fff8dc; /* warm cream (close to Cornsilk) */
+    background-color: #fff8dc;
     min-height: 100vh;
     padding: 2rem;
     color: #333;
+}
+
+.op-owl {
+    max-width: 120px;
+    display: block;
+    margin: 0 auto 2rem;
 }
