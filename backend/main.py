@@ -1,11 +1,9 @@
-from fastapi import FastAPI, Depends, Query
-from auth import verify_token, generate_token
+from fastapi import FastAPI, Query
 from crud import get_guide_by_id, get_guide_by_opcode, get_all_guides, put_guide_crud, delete_guide_crud
 from fastapi.middleware.cors import CORSMiddleware
 
 
 app = FastAPI()
-#generate_token()
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["http://localhost:8080", "https://smvs-gmbh-op-code-search-engine.onrender.com/"],  # TODO: Replace for production. Only in TESTING!!!
