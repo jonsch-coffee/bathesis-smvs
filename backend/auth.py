@@ -6,7 +6,7 @@ from settings import SECRET_KEY
 
 security = HTTPBearer()
 CLAIMS = {"app": "smvs_op-search"}
-print("🔐 Loaded SECRET_KEY:", SECRET_KEY)
+#print("🔐 Loaded SECRET_KEY:", SECRET_KEY)
 
 def generate_token():
     token = jwt.encode(CLAIMS, SECRET_KEY, algorithm="HS256")

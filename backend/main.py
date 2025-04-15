@@ -5,7 +5,7 @@ from fastapi.middleware.cors import CORSMiddleware
 
 
 app = FastAPI()
-generate_token()
+#generate_token()
 app.add_middleware(
     CORSMiddleware,
     allow_origins=["http://localhost:8080", "https://smvs-gmbh-op-code-search-engine.onrender.com/"],  # TODO: Replace for production. Only in TESTING!!!
@@ -14,7 +14,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-@app.get("/guides/{guide_id}", dependencies=[Depends(verify_token)])
+@app.get("/guides/{guide_id}")
 def fetch_guide(guide_id: int):
     return get_guide_by_id(guide_id)
 
