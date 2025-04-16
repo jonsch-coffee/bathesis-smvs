@@ -47,44 +47,29 @@ function goToStep(nextStepId) {
 </script>
 
 <template>
-  <div class="row">
-    <div class="col"></div>
-    <div class="col-6">
-      <h1>{{ guide.data.title }}</h1>
-      <button
-        class="btn btn-light"
-        @click="router.push('/')"
-    >🏠 Home</button>
-      <button
+  <div class="jumbotron"> <!-- https://getbootstrap.com/docs/4.0/components/jumbotron/ -->
+    <div class="display-4">
+      {{ guide.data.title }}
+      <div id="btn-group">
+        <button
           class="btn btn-light"
-          @click="goToStep(prevStep)"
-          :disabled="!prevStep"
-      >
-        ← Back
-      </button>
-    </div>
-    <div class="col"></div>
-  </div>
-  <div class="row">
-    <div class="col"></div>
-    <div class="col-6"><br>
-      <div class="alert alert-secondary" role="alert">
-        <h2>{{ currentStep.questionTitle }}</h2>
+          @click="router.push('/')"
+        >🏠 Home</button>
+        <button
+            class="btn btn-light"
+            @click="goToStep(prevStep)"
+            :disabled="!prevStep"
+        >
+          ← Back
+        </button>
       </div>
     </div>
-    <div class="col"></div>
-  </div>
-  <div class="row">
-    <div class="col"></div>
-    <div class="col-6"><br>
+  <p class="lead" style="margin-top: 10px;">{{ currentStep.questionTitle }}</p>
+    <hr class="my-4">
+
       <p>{{ currentStep.description }}</p></div>
-    <div class="col"></div>
-  </div>
-  <div class="row">
-    <div class="col"></div>
-    <div class="col-6">
-      <p>{{ currentStep.question }}</p><br>
-      <div
+
+  <p class="lead"
            v-for="value in currentStep.options"
            :key="value.id"
            @click="goToStep(value.target)"
@@ -92,8 +77,5 @@ function goToStep(nextStepId) {
         <button class="btn btn-dark">
           {{ value.label }}
         </button><br>
-      </div>
-    </div>
-    <div class="col"></div>
-  </div>
+      </p>
 </template>

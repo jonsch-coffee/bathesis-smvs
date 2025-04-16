@@ -9,13 +9,11 @@ import owlImage from "@/assets/images/op-owl.png";
 
 <template>
   <div class="container">
-    <div class="row">
-      <div class="col"></div>
-      <div class="col-6">
-        <img class="op-owl" :src="owlImage" alt="OP Owl by ChatGPT" />
-        <TypeAheadComponent />
+    <div class="row d-flex align-items-center">
+      <div class="col col-md-auto"><img class="op-owl" :src="owlImage" alt="OP Owl by ChatGPT" />
       </div>
-      <div class="col"></div>
-    </div>
+      <div class="col"><TypeAheadComponent /></div>
+
+      </div>
   </div>
 </template>
