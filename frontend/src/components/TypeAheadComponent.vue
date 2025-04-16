@@ -4,13 +4,17 @@
 
 /* eslint-disable */
 import { useRouter } from 'vue-router'
-import { ref, watch } from "vue";
+import {computed, ref, watch} from "vue";
 
 import GuideService from '@/services/guideService'
 // TODO put in TypeAheadComponent-Component
 const router = useRouter()
 const query = ref('')
+const error = ref(false)
 const suggestions = ref([])
+const queryLength = computed(() => {
+  return query.value.length === 8
+})
 
 watch(query, async (newValue) => {
   if (newValue.length >= 1) {
@@ -26,6 +30,15 @@ watch(query, async (newValue) => {
   }
 })
 
+function checkSearchInput() {
+  const match = suggestions.value.find((v) => v.code === query.value)
+  if (match) {
+    goToGuide(match.guideId)
+  } else {
+    error.value = true
+  }
+}
+
 function goToGuide(guideId) {
   router.push(`/guide/${guideId}`)
 }
@@ -34,11 +47,15 @@ function goToGuide(guideId) {
 
 <template>
 
+  <div class="alert alert-warning" role="alert" v-if="error">
+    Operation-Code could not be found.
+  </div>
+
 
     <input
         type="text"
         v-model="query"
-        placeholder="Den Operation-Code aus der Alertmeldung eingeben, zB.: 5120900"
+        placeholder="Type in the operation-code from the alert-message, eg. 5120900"
         class="form-control mb-3"
     />
 
@@ -52,5 +69,7 @@ function goToGuide(guideId) {
         {{ s.code }}
       </li>
     </ul>
+
+  <button type="button" class="btn btn-outline-info" style="margin-top: 10px;" :disabled="!queryLength" @click="checkSearchInput">Search</button>
 
 </template>

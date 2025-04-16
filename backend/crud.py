@@ -21,7 +21,7 @@ def get_guide_by_id(guide_id: int) -> Guide:
     db = read_data()
     return next((g for g in db["guides"] if g["id"] == guide_id), None) # ??
 
-# Type Ahead suggestions based on a given op-code
+# Type Ahead suggestions based on a gißven op-code
 def get_guide_by_opcode(code_like: int) -> OpCode:
     db = read_data()
     matches = [c for c in db["opcodes"] if c["code"].startswith(code_like)][:2]
