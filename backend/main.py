@@ -17,8 +17,12 @@ def fetch_guide(guide_id: int):
     return get_guide_by_id(guide_id)
 
 @app.get("/opcodes")
-def get_opcodes(code_like: str = Query(None)):
-    return get_guide_by_opcode(code_like)
+def get_opcodes(
+        code_like: str = Query(None),
+        code: str = Query(None) # one of them works... maybe the frontend code should be optimized in a way that I don't need to optional params
+):
+    search_code = code_like or code # kind a like a work-around aka tmp-fix ;)
+    return get_guide_by_opcode(search_code)
 
 @app.get("/guides")
 def get_guides():
