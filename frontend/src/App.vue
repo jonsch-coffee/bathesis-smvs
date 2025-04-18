@@ -30,12 +30,4 @@ onBeforeUnmount(() => {
   <RouterView class="background"/> <!-- wichtig, ansonsten werden die Codes nicht angezeigt aus der Getter-Leiste! -->
 </template>
 
-<style>
-.background {
-  background-color: #fff8dc; /* warm cream (close to Cornsilk) */
-  min-height: 100vh;
-  padding: 2rem;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  color: #333;
-}
-</style>
+

@@ -47,7 +47,8 @@ function goToStep(nextStepId) {
 </script>
 
 <template>
-  <div class="jumbotron"> <!-- https://getbootstrap.com/docs/4.0/components/jumbotron/ -->
+  <!--<iframe width="560" height="315" src="https://www.youtube.com/embed/uS8b-IR8_dg?si=8PH5gI5e0U96mVTY&autoplay=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe><div class="jumbotron"> -->
+  <!-- https://getbootstrap.com/docs/4.0/components/jumbotron/ -->
     <div class="display-4">
       {{ guide.data.title }}
       <div id="btn-group">
@@ -67,7 +68,7 @@ function goToStep(nextStepId) {
   <p class="lead" style="margin-top: 10px;">{{ currentStep.questionTitle }}</p>
     <hr class="my-4">
 
-      <p>{{ currentStep.description }}</p></div>
+      <p>{{ currentStep.description }}</p>
 
   <p class="lead"
            v-for="value in currentStep.options"
