@@ -28,6 +28,7 @@ onBeforeUnmount(() => {
 
 <template>
   <RouterView class="background"/> <!-- wichtig, ansonsten werden die Codes nicht angezeigt aus der Getter-Leiste! -->
+  <div>{{ $route.fullPath }}</div>
 </template>
 
 
