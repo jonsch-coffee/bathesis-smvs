@@ -12,5 +12,6 @@ const router = useRouter()
 <template>
   <div class="d-flex flex-column min-vh-100 justify-content-center align-items-center">
     <button @click="router.push('/editor')">Editor öffnen</button>
+    <button @click="router.push('/test')">Test öffnen</button>
   </div>
 </template>
