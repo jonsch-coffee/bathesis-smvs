@@ -95,6 +95,7 @@ function createNewGuide() {
   allGuides.value.push(newGuide)
   localStorage.setItem(LOCAL_KEY_GUIDES, JSON.stringify(allGuides.value))
   selectedGuideId.value = newGuide.id
+  alert("Guide erfolgreich erstellt! ✅ Bitte als nächstes den Titel vergeben.")
   Object.assign(guide, newGuide)
 }
 
@@ -240,16 +241,16 @@ function exportLocalStorageData() {
     <option v-for="g in allGuides" :key="g.id" :value="g.id">{{ g.title }}</option>
   </select>
   <div class="btn-group" role="group" >
-    <button class="btn btn-info" @click="createNewGuide">➕</button>
-    <button class="btn btn-info" @click="exportLocalStorageData">📦</button>
-    <router-link class="btn btn-info"
-        :to="{ name: 'home' }"
-    >X
-    </router-link>
+    <button class="btn btn-info" @click="createNewGuide">➕ Neuen Guide erstellen</button>
+    <!-- <button class="btn btn-info" @click="exportLocalStorageData">📦</button> -->
     <button class="btn btn-danger" @click="deleteGuide">
-      🗑️
+      🗑️ Ausgewählten Guide löschen
     </button>
-    <button class="btn btn-danger" @click="clearLocalStorage">🧹</button>
+    <router-link class="btn btn-secondary"
+                 :to="{ name: 'home' }"
+    >❌Editor Schliessen
+    </router-link>
+    <!-- <button class="btn btn-danger" @click="clearLocalStorage">🧹</button> -->
   </div>
   <hr>
   <div class="row g-0">
