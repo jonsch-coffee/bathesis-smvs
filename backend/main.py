@@ -6,7 +6,7 @@ from fastapi.middleware.cors import CORSMiddleware
 app = FastAPI()
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:8080", "https://bathesis-smvs.onrender.com/"],  # TODO: Replace for production. Only in TESTING!!!
+    allow_origins=["http://localhost:8080", "https://bathesis-smvs-dev.jonsch.coffee"],  # TODO: Replace for production. Only in TESTING!!!
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
