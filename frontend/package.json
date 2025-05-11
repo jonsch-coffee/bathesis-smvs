@@ -3,9 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "vue-cli-service serve",
-    "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "dev:search": "vue-cli-service serve --mode search",
+    "dev:editor": "vue-cli-service serve --mode editor",
+    "build:search": "vue-cli-service build --mode search --dest dist/search",
+    "build:editor": "vue-cli-service build --mode editor --dest dist/editor"
   },
   "dependencies": {
     "@mdi/font": "^7.4.47",

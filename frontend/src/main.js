@@ -8,6 +8,7 @@ import { BootstrapVueNext, BModal, BButton } from 'bootstrap-vue-next'
 // CSS
 import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue-next/dist/bootstrap-vue-next.css'
+import '@/assets/main.css'
 
 const app = createApp(App)
 

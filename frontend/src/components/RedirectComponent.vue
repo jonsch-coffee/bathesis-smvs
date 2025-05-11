@@ -2,7 +2,7 @@
 
 import { useRoute, useRouter } from 'vue-router'
 import {ref} from "vue";
-import GuideService from "@/services/guideService";
+import GuideService from "@/services/guideServiceDeprecated";
 
 const route = useRoute()
 const router = useRouter()
