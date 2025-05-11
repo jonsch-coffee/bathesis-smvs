@@ -1,7 +1,7 @@
 // src/services/apiClient.js
 import axios from 'axios'
 
-export function createApiClient(apiUrl) {
+export function createSearchApiClient(apiUrl) {
     return axios.create({
         baseURL: apiUrl,
         withCredentials: false,

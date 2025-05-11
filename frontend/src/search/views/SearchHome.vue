@@ -1,13 +1,14 @@
 <script setup>
+
   import { ref, watch } from 'vue'
 
   // API
-  import { useApiClient } from '../composables/useApiClient'
+  import { useSearchApiClient } from '../composables/useSearchApiClient'
   import { getGuideSuggestions } from '@/shared/services/guideService'
 
   import GuideDetails from './GuideDetails.vue'
 
-  const api = useApiClient()
+  const api = useSearchApiClient()
 
   const query = ref('')
   const error = ref(false)
@@ -38,8 +39,6 @@
       suggestions.value = []
     }
   })
-
-  console.log(selectedGuideId)
 
 </script>
 

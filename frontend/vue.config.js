@@ -1,10 +1,14 @@
-const { defineConfig } = require('@vue/cli-service');
+const { defineConfig } = require('@vue/cli-service')
 
-const entry =  'search';
-const isSearch = entry === 'search';
+// Umgebungsvariable lesen
+const entry = process.env.VUE_APP_ENTRY
+const isSearch = entry === 'search'
+const isEditor = entry === 'editor'
 
 module.exports = defineConfig({
   filenameHashing: false,
+  publicPath: '/',
+  transpileDependencies: true,
 
   ...(isSearch && {
     configureWebpack: {
@@ -22,8 +26,21 @@ module.exports = defineConfig({
     }
   }),
 
-  publicPath: '/',
-  transpileDependencies: true,
+  ...(isEditor && {
+    configureWebpack: {
+      entry: './src/editor/main.js',
+      output: {
+        filename: 'editor-widget.js',
+        library: {
+          name: 'EditorWidget',
+          type: 'umd'
+        }
+      },
+      optimization: {
+        splitChunks: false
+      }
+    }
+  }),
 
   pages: {
     ...(isSearch && {
@@ -34,7 +51,7 @@ module.exports = defineConfig({
         title: 'OP-Code Search'
       }
     }),
-    ...(entry === 'editor' && {
+    ...(isEditor && {
       editor: {
         entry: 'src/editor/main.js',
         template: 'public/editor.html',
@@ -47,4 +64,4 @@ module.exports = defineConfig({
   devServer: {
     open: entry ? [`/${entry}.html`] : false
   }
-});
+})

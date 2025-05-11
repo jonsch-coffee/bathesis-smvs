@@ -2,16 +2,15 @@
 // eslint-disable-next-line
   import { onMounted, ref } from 'vue'
 
-  // API
-  import { useApiClient } from '../composables/useApiClient'
-  import { getGuideElement } from '@/shared/services/guideService'
-
+  // Components
   import GuideStep from '../components/GuideStep.vue'
   import GuideOptions from '../components/GuideOptions.vue'
   import GuideNavigation from '../components/GuideNavigation.vue'
 
+  // API
+  import { useSearchApiClient } from '../composables/useSearchApiClient'
   import { useGuideSteps } from '../composables/useGuideSteps'
-
+  import { getGuideElement } from '@/shared/services/guideService'
 
 // eslint-disable-next-line no-undef,no-unused-vars
   const props = defineProps({
@@ -25,7 +24,7 @@
     emit('back') // signalisiert dem Elternteil: zurück zur Suche
   }
 
-  const api = useApiClient()
+  const api = useSearchApiClient()
 
   const guide = ref({ title: '', opCodes: [], steps: [] })
   const { currentStep, prevStep, goToStep } = useGuideSteps(guide)

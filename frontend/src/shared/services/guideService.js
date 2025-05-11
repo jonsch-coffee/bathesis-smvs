@@ -1,14 +1,10 @@
 /**
  * All shared get-request
- * Needs api-instance from search / editor (eg. apiBase.js)
+ * Needs api-instance from search / editor (eg. editorApiBase.js)
  */
 
 export function getGuideElement(api, id) {
     return api.get(`/guides/${id}`);
-}
-
-export function getGuideFromOPCode(api, opcode) {
-    return api.get(`/opcodes?code=${opcode}`);
 }
 
 export function getGuideSuggestions(api, currentValue) {
@@ -16,5 +12,5 @@ export function getGuideSuggestions(api, currentValue) {
 }
 
 export function getAllGuides(api) {
-    return api.get('/guides');
+    return api.get('/guides/all');
 }

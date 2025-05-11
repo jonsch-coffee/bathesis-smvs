@@ -1,5 +1,7 @@
 <script setup>
 import MarkdownIt from 'markdown-it'
+import {computed} from "vue";
+
 // eslint-disable-next-line
 const markdown = new MarkdownIt()
 // eslint-disable-next-line
@@ -8,7 +10,7 @@ const props = defineProps({
   description: String
 })
 
-const renderedDescription = markdown.render(props.description)
+const renderedDescription = computed(() => markdown.render(props.description || ''))
 
 </script>
 

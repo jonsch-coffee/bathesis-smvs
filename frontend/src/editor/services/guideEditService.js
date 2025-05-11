@@ -1,4 +1,4 @@
-import api from './apiBase'; // Editor specific instance with API-Token
+import api from './editorApiBase'; // Editor specific instance with API-Token
 
 export function updateGuide(guide) {
     return api.patch(`/guides/${guide.id}`, guide);

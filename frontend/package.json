@@ -3,10 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev:search": "vue-cli-service serve --mode search",
-    "dev:editor": "vue-cli-service serve --mode editor",
-    "build:search": "vue-cli-service build --mode search --dest dist/search",
-    "build:editor": "vue-cli-service build --mode editor --dest dist/editor"
+    "dev": "vue-cli-service serve",
+    "build": "vue-cli-service build"
   },
   "dependencies": {
     "@f3ve/vue-markdown-it": "^0.2.3",
