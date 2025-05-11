@@ -129,7 +129,7 @@
         {
           "id": "02b30913-63e7-4914-bc0f-e2f88ecf7179",
           "questionTitle": "Check for manual data entry issue (procedural error)",
-          "description": "The most common procedural error that may have caused this is wrong manual entry.\n\nHave you entered the data manually?",
+          "description": "[Link text Here](https://link-url-here.org)\n- Bacon\n- Ham\n- Eggs \n1. TEST\n2. st The most common procedural error that may have caused this is wrong manual entry.\n\nHave you entered the data manually?",
           "options": [
             {
               "id": "89052873-576f-4b14-9585-f6a421ae744a",
