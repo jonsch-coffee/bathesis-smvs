@@ -1,57 +1,55 @@
 <script setup>
-import { onMounted, ref, watchEffect } from 'vue'
+import { onMounted, watch } from 'vue'
 import { useEditorApiClient } from '../composables/useEditorApiClient'
 import { getAllGuides } from '@/shared/services/guideService'
-import { useGuideStore } from '../composables/useGuideStore'
+
+import { storeToRefs } from "pinia";
 import { useAutoSaveGuide } from '../composables/useAutoSaveGuide'
 import { updateGuide } from '../services/guideEditService'
 
 import StepEditorList from '../components/StepEditorList'
+import { useGuideStore } from "@/editor/stores/guideStore";
 
 const api = useEditorApiClient()
+
+const guideStore = useGuideStore()
 const {
   allGuides,
   selectedGuideId,
-  guide,
-  selectGuideById,
-  createNewGuide,
-  deleteGuide
-} = useGuideStore()
-
-const steps = ref([])
-watchEffect(() => {
-  steps.value = guide.steps ?? []
-})
-
-function updateStep(index, updatedStep) {
-  steps.value[index] = { ...updatedStep }
-}
+  guide
+} = storeToRefs(guideStore)
 
 onMounted(async () => {
   try {
     const response = await getAllGuides(api)
-    allGuides.value = response.data
+    guideStore.setAllGuides(response.data)
   } catch (err) {
     console.error('API error:', err)
   }
 })
 
-useAutoSaveGuide(guide, (guide) => updateGuide(api, guide))
+watch(selectedGuideId, (newId) =>  { // bei neu-auswahl werden änderungen nicht gespeichert!
+  guideStore.selectGuideById(newId)
+})
+
+useAutoSaveGuide(guide, {
+  saveFn: (guide) => updateGuide(api, guide),
+  updateLocal: (guide) => guideStore.updateGuideLocally(guide)
+})
+
 </script>
 
 <template>
   <div class="container mt-4">
     <h2>Guide Editor</h2>
-
-    <!-- Guide-Auswahl -->
-    <select class="form-select mb-3" v-model="selectedGuideId" @change="selectGuideById(selectedGuideId)">
+    <select class="form-select mb-3" v-model="selectedGuideId">
       <option disabled value="">-- Guide wählen --</option>
       <option v-for="g in allGuides" :key="g.id" :value="g.id">{{ g.title }}</option>
     </select>
 
     <div class="btn-group mb-4">
-      <button class="btn btn-success" @click="createNewGuide">➕ Neuer Guide</button>
-      <button class="btn btn-danger" @click="deleteGuide" :disabled="!selectedGuideId">🗑️ Löschen</button>
+      <button class="btn btn-success" @click="guideStore.createNewGuide">➕ Neuer Guide</button>
+      <button class="btn btn-danger" @click="guideStore.deleteGuide" :disabled="!selectedGuideId">🗑️ Löschen</button>
     </div>
 
     <!-- Aktueller Guide -->
@@ -62,17 +60,8 @@ useAutoSaveGuide(guide, (guide) => updateGuide(api, guide))
       <p><strong>ID:</strong> {{ guide.id }}</p>
       <p><strong>Anzahl Schritte:</strong> {{ guide.steps.length }}</p>
 
-      <StepEditorList
-        :steps="steps"
-        @add="steps.value.push({
-          id: Date.now(),
-          questionTitle: `Schritt ${steps.value.length + 1}`,
-          description: '',
-          options: []
-        })"
-        @updateStep="updateStep"
-      />
-      <!-- Weitere Komponenten wie StepEditor, OpCodeManager etc. folgen hier -->
+      <StepEditorList />
+
     </div>
 
 

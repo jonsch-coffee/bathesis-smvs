@@ -6,14 +6,27 @@ import debounce from 'lodash/debounce'
  *
  * @param {Object} guide - Das reaktive Guide-Objekt
  * @param {Function} saveFn - Funktion, die den Guide speichert (z.B. `api.patch(...)`)
+ * @param updateLocal
  */
-export function useAutoSaveGuide(guide, saveFn) {
+export function useAutoSaveGuide(guide, { saveFn, updateLocal }) {
+    console.log('🧪 useAutoSaveGuide initialisiert', guide)
     const debouncedSave = debounce(() => {
-        if (!guide.id || !guide.title) return // einfache Validierung
-        saveFn(guide)
-            .then(() => console.log('✅ Guide gespeichert'))
+        if (!guide.value?.id || !guide.value?.title) return// Prüft, ob Titel und ID vorhanden sind, bevor die Änderungen ans Backend geschickt werden
+        saveFn(guide.value) // Nutzt den mitgelieferten API-Call
+            .then(() => {
+                updateLocal(guide.value)
+                console.log('✅ Guide gespeichert')
+            })
             .catch(err => console.warn('❌ Speichern fehlgeschlagen', err))
     }, 1500)
 
-    watch(guide, debouncedSave, { deep: true })
+    //watch(guide, debouncedSave, { deep: true })
+
+    watch(
+        () => JSON.stringify(guide.value),
+        () => {
+            console.log('🔁 Änderung erkannt via JSON.stringify')
+            debouncedSave()
+        }
+    )
 }
