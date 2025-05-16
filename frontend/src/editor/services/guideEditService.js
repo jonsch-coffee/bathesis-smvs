@@ -14,7 +14,8 @@ export function updateGuide(api, guide) {
 }
 
 export function createGuide(api, guide) {
-    return api.post(`/guides`, guide)
+    console.log(guide.value)
+    return api.post(`/guides/create`, guide.value)
 }
 
 export function deleteGuide(api, id) {

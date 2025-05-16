@@ -5,7 +5,7 @@ import { getAllGuides } from '@/shared/services/guideService'
 
 import { storeToRefs } from "pinia";
 import { useAutoSaveGuide } from '../composables/useAutoSaveGuide'
-import { updateGuide } from '../services/guideEditService'
+import { updateGuide, createGuide, deleteGuide } from '../services/guideEditService'
 
 import StepEditorList from '../components/StepEditorList'
 import { useGuideStore } from "@/editor/stores/guideStore";
@@ -37,6 +37,17 @@ useAutoSaveGuide(guide, {
   updateLocal: (guide) => guideStore.updateGuideLocally(guide)
 })
 
+function createNewGuide() {
+  guideStore.createNewGuide()
+  createGuide(api, guide)
+}
+
+function deleteSelectedGuide() {
+    deleteGuide(api, selectedGuideId)
+    guideStore.deleteGuide(selectedGuideId)
+}
+
+
 </script>
 
 <template>
@@ -48,8 +59,8 @@ useAutoSaveGuide(guide, {
     </select>
 
     <div class="btn-group mb-4">
-      <button class="btn btn-success" @click="guideStore.createNewGuide">➕ Neuer Guide</button>
-      <button class="btn btn-danger" @click="guideStore.deleteGuide" :disabled="!selectedGuideId">🗑️ Löschen</button>
+      <button class="btn btn-success" @click="createNewGuide">➕ Neuer Guide</button>
+      <button class="btn btn-danger" @click="deleteSelectedGuide" :disabled="!selectedGuideId">🗑️ Löschen</button>
     </div>
 
     <!-- Aktueller Guide -->

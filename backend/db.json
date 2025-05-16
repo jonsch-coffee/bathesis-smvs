@@ -67,8 +67,20 @@
       "steps": [
         {
           "id": "201fa989-86c0-407d-9cd8-67424e15651b",
-          "questionTitle": "This pack has already been decommissioned.",
+          "questionTitle": "This pack has already been decommissioned. TEST",
           "description": "Set the pack aside and contact SMVS GmbH for help with this alert. SMVS GmbH will need to run a pack audit trail for this pack to check the history of the pack because this is an uncommon alert.",
+          "options": [
+            {
+              "id": "6355938a-00b6-48a2-adf6-04dc65ae1b61",
+              "label": "Weiter",
+              "target": "2ebadbeb-5c94-4f41-b324-1c858976d710"
+            }
+          ]
+        },
+        {
+          "id": "2ebadbeb-5c94-4f41-b324-1c858976d710",
+          "questionTitle": "Test",
+          "description": "Test\n\n**Dieser Text ist fett.**",
           "options": []
         }
       ],
@@ -128,7 +140,7 @@
       "steps": [
         {
           "id": "02b30913-63e7-4914-bc0f-e2f88ecf7179",
-          "questionTitle": "Check for manual data entry issue (procedural error)",
+          "questionTitle": "Check for manual data entry issue (procedural error)s",
           "description": "[Link text Here](https://link-url-here.org)\n- Bacon\n- Ham\n- Eggs \n1. TEST\n2. st The most common procedural error that may have caused this is wrong manual entry.\n\nHave you entered the data manually?",
           "options": [
             {
