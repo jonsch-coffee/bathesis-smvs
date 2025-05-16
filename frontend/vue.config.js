@@ -9,6 +9,10 @@ module.exports = defineConfig({
   filenameHashing: false,
   publicPath: '/',
   transpileDependencies: true,
+  productionSourceMap: false,
+  css: {
+    extract: false // <-- Styles kommen wieder direkt ins JS
+  },
 
   ...(isSearch && {
     configureWebpack: {

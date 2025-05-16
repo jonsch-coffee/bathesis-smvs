@@ -1,6 +1,7 @@
-from fastapi import FastAPI, Request, HTTPException
+from fastapi import FastAPI, Request, HTTPException, Header
 from fastapi.middleware.cors import CORSMiddleware
-
+from pydantic import BaseModel
+from typing import Optional
 import json
 import os
 
@@ -20,10 +21,34 @@ app.add_middleware(
 with open(db_path, "r", encoding="utf-8") as file:
     db = json.load(file)
 
+# Optional: API-Key Prüfung (kann auch optional weggelassen werden)
+API_KEY = "mpamsido"
+
+def verify_api_key(auth: Optional[str]):
+    if auth != f"Bearer {API_KEY}":
+        raise HTTPException(status_code=403, detail="Ungültiger API-Key")
+
 # Returns system-health
 @app.get("/health")
 def health():
     return {"status": "ok"}
+
+# PATCH /guides/{guide_id}
+@app.patch("/guides/{guide_id}")
+async def patch_guide(guide_id: int, request: Request, authorization: Optional[str] = Header(None)):
+    verify_api_key(authorization)
+
+    payload = await request.json()
+
+    # Guide finden
+    for i, guide in enumerate(db["guides"]):
+        if guide["id"] == guide_id:
+            db["guides"][i] = payload  # Ganzes Objekt ersetzen
+            with open(db_path, "w", encoding="utf-8") as file:
+                json.dump(db, file, ensure_ascii=False, indent=2)
+            return {"status": "updated"}
+
+    raise HTTPException(status_code=404, detail="Guide nicht gefunden")
 
 # Returns all registered guides
 @app.get("/guides/all")

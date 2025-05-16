@@ -3,8 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "vue-cli-service serve",
-    "build": "vue-cli-service build"
+    "dev:search": "VUE_APP_ENTRY=search vue-cli-service serve",
+    "dev:editor": "VUE_APP_ENTRY=editor vue-cli-service serve",
+    "build:search": "VUE_APP_ENTRY=search vue-cli-service build && rm -f dist/editor.html",
+    "build:editor": "VUE_APP_ENTRY=editor vue-cli-service build && rm -f dist/search.html"
   },
   "dependencies": {
     "@f3ve/vue-markdown-it": "^0.2.3",
@@ -18,6 +20,7 @@
     "uuid": "^11.1.0",
     "vue": "^3.2.13",
     "vue-router": "^4.5.0",
+    "vue3-otp-input": "^0.5.30",
     "vuetify": "^3.7.19"
   },
   "devDependencies": {

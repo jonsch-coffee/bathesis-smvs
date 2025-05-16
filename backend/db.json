@@ -82,24 +82,24 @@
     },
     {
       "id": 1745082314231,
-      "title": "Medizininformatik \ud83e\ude7a",
+      "title": "Medizininformatik 🩺",
       "steps": [
         {
           "id": "baacd838-506e-4db1-8abd-75aeedcc4978",
           "questionTitle": "Was ist das?",
-          "description": "Medizininformatik ist die Schnittstelle zwischen Informatik, Medizin und Gesundheitswesen. Ziel ist es, medizinische Daten (z.\u202fB. aus Krankenh\u00e4usern, Forschung oder Patientenakten) systematisch zu erfassen, zu analysieren und f\u00fcr Diagnostik, Therapie oder Verwaltung nutzbar zu machen.",
+          "description": "Medizininformatik ist die Schnittstelle zwischen Informatik, Medizin und Gesundheitswesen. Ziel ist es, medizinische Daten (z. B. aus Krankenhäusern, Forschung oder Patientenakten) systematisch zu erfassen, zu analysieren und für Diagnostik, Therapie oder Verwaltung nutzbar zu machen.",
           "options": [
             {
               "id": "f35bf859-1fec-4f9c-911e-8c72b9351221",
-              "label": "Weiter \ud83d\udd7a",
+              "label": "Weiter 🕺",
               "target": "8d6f6dcd-26b0-4a2d-801a-49fcd0edd8bf"
             }
           ]
         },
         {
           "id": "8d6f6dcd-26b0-4a2d-801a-49fcd0edd8bf",
-          "questionTitle": "Kann man hier studieren \ud83d\udc68\u200d\ud83c\udf93\ud83d\udc69\u200d\ud83c\udf93",
-          "description": "https://www.bfh.ch/de/studium/bachelor/medizininformatik/\n\n\ud83d\ude0e\ud83c\udd99",
+          "questionTitle": "Kann man hier studieren 👨‍🎓👩‍🎓",
+          "description": "https://www.bfh.ch/de/studium/bachelor/medizininformatik/\n\n😎🆙",
           "options": []
         }
       ],
@@ -163,7 +163,7 @@
         {
           "id": "756b42df-6ee2-4172-8d5d-6cbe1879e06d",
           "questionTitle": "Procedural cause found and corrected",
-          "description": "Once the verification scan has resulted in a successful verification, the pack can be returned to saleable stock.\n\nIf your Point of Sales (POS) software told you that \u2018an alert has been raised\u2019, please document the root cause of the alert in NMVS Alerts. Once documented the investigation is complete.",
+          "description": "Once the verification scan has resulted in a successful verification, the pack can be returned to saleable stock.\n\nIf your Point of Sales (POS) software told you that ‘an alert has been raised’, please document the root cause of the alert in NMVS Alerts. Once documented the investigation is complete.",
           "options": []
         },
         {
@@ -192,7 +192,7 @@
         {
           "id": "2dd51d5d-4a1c-43d7-9367-328d62e460f3",
           "questionTitle": "End-user technical check",
-          "description": "Locate a package where the human-readable text (such as the product name or batch number) is clearly visible. \n\nOpen any text editor on your computer and ensure you can type characters from your keyboard, which confirms your keyboard input is functioning correctly. \n\nNext, scan the package\u2019s code and compare the scanned output in Notepad to the human-readable text you see on the package.\n\nDoes the scanned output not match the human-readable text on the package?",
+          "description": "Locate a package where the human-readable text (such as the product name or batch number) is clearly visible. \n\nOpen any text editor on your computer and ensure you can type characters from your keyboard, which confirms your keyboard input is functioning correctly. \n\nNext, scan the package’s code and compare the scanned output in Notepad to the human-readable text you see on the package.\n\nDoes the scanned output not match the human-readable text on the package?",
           "options": [
             {
               "id": "1e3360ea-c212-44b1-88ab-9645808d5c24",
@@ -214,7 +214,7 @@
         {
           "id": "11132968-e4bc-417d-ace5-225238213fc9",
           "questionTitle": "Technical error found and corrected",
-          "description": "A verification scan of the pack should be undertaken to determine if the corrective action has been successful. \n\nIf the verification scan is successful, the pack may be returned to saleable stock. If your Point of Sales (POS) software told you that \u2018an alert has been raised\u2019, please document the root cause of the alert in NMVS Alerts. \n\nOnce documented the investigation is complete.  ",
+          "description": "A verification scan of the pack should be undertaken to determine if the corrective action has been successful. \n\nIf the verification scan is successful, the pack may be returned to saleable stock. If your Point of Sales (POS) software told you that ‘an alert has been raised’, please document the root cause of the alert in NMVS Alerts. \n\nOnce documented the investigation is complete.  ",
           "options": []
         },
         {
@@ -303,6 +303,10 @@
     },
     {
       "code": "41020011",
+      "guideId": 1745770589053
+    },
+    {
+      "code": "4102003",
       "guideId": 1745770589053
     }
   ]

@@ -49,13 +49,27 @@
       <div class="alert alert-warning" v-if="error">
         Operation-Code not found!
       </div>
-
+<!--
       <input
           v-model="query"
           type="text"
           class="form-control mb-3"
           placeholder="Enter Operation-Code"
           @keydown.enter="checkSearchInput"
+      /> -->
+
+      <v-otp-input
+          ref="otpInput"
+          input-classes="otp-input"
+          :conditionalClass="['one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight']"
+          separator=" "
+          inputType="letter-numeric"
+          :num-inputs="8"
+          v-model:value="query"
+          :should-auto-focus="true"
+          :should-focus-order="true"
+          @on-change="checkSearchInput"
+          :placeholder="['*', '*', '*', '*', '*', '*', '*', '*']"
       />
 
       <ul class="list-group" v-if="suggestions.length">
@@ -70,6 +84,7 @@
       </ul>
     </div>
 
+    <!-- Show step-by-step guide as soon as an operation-cpde has been chosen -->
     <div v-else>
       <GuideDetails
           :guideId="selectedGuideId"
@@ -78,3 +93,31 @@
     </div>
   </div>
 </template>
+
+<style>
+.otp-input {
+  width: 40px;
+  height: 40px;
+  padding: 5px;
+  margin: 0 10px;
+  font-size: 20px;
+  border-radius: 4px;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  text-align: center;
+}
+/* Background colour of an input field with value */
+.otp-input.is-complete {
+  background-color: #e4e4e4;
+}
+.otp-input::-webkit-inner-spin-button,
+.otp-input::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input::placeholder {
+  font-size: 15px;
+  text-align: center;
+  font-weight: 600;
+}
+</style>
+cam
