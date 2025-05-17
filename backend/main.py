@@ -2,17 +2,19 @@ from fastapi import FastAPI, Request, HTTPException, Header
 from fastapi.middleware.cors import CORSMiddleware
 from dotenv import load_dotenv
 from typing import Optional
+from fastapi.responses import Response
+
 import uuid
 import json
 import os
 
+BASE_DIR = os.path.dirname(__file__)
+load_dotenv()
 
 # API-KEY
-load_dotenv()
 API_KEY = os.getenv("API_KEY")
 
 # Datastore
-BASE_DIR = os.path.dirname(__file__)
 db_path = os.path.join(BASE_DIR, "db.json")
 
 # CORS. Important: allow_origins must contain https://smvs-gmbh.ch when deployed in production!
@@ -25,9 +27,22 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Read datastore
-with open(db_path, "r", encoding="utf-8") as file:
-    db = json.load(file)
+# Datastore operations
+def load_db():
+    with open(db_path, "r", encoding="utf-8") as file:
+        return json.load(file)
+
+def save_db(db):
+    with open(db_path, "w", encoding="utf-8") as file:
+        json.dump(db, file, ensure_ascii=False, indent=2)
+
+# Open widget
+def load_widget(widget_name):
+    file_path = os.path.join(BASE_DIR, widget_name)
+    with open(file_path, "r", encoding="utf-8") as f:
+        js_code = f.read()
+    return js_code
+
 
 # Verifies the API_KEY for PATCH, GET and POST operations
 def verify_api_key(auth: Optional[str]):
@@ -44,6 +59,7 @@ def verify_api_key(auth: Optional[str]):
 async def patch_guide(guide_id: str, request: Request, authorization: Optional[str] = Header(None)):
     verify_api_key(authorization)
 
+    db = load_db()
     payload = await request.json()
 
     # Find guide
@@ -66,8 +82,7 @@ async def patch_guide(guide_id: str, request: Request, authorization: Optional[s
             db["opcodes"].extend(new_entries)
 
             # Save changes
-            with open(db_path, "w", encoding="utf-8") as file:
-                json.dump(db, file, ensure_ascii=False, indent=2)
+            save_db(db)
 
             return {"status": "updated", "guideId": guide_id}
 
@@ -84,6 +99,7 @@ async def create_guide(request: Request, authorization: Optional[str] = Header(N
     if not title:
         raise HTTPException(status_code=400, detail="Titel fehlt.")
 
+    db = load_db()
     new_guide = {
         "id": str(uuid.uuid4()),  # ID wird serverseitig generiert
         "title": title,
@@ -92,9 +108,7 @@ async def create_guide(request: Request, authorization: Optional[str] = Header(N
     }
 
     db.setdefault("guides", []).append(new_guide)
-
-    with open(db_path, "w", encoding="utf-8") as file:
-        json.dump(db, file, ensure_ascii=False, indent=2)
+    save_db(db)
 
     return new_guide
 
@@ -102,6 +116,7 @@ async def create_guide(request: Request, authorization: Optional[str] = Header(N
 @app.delete("/guides/{guide_id}")
 async def delete_guide(guide_id: str, authorization: Optional[str] = Header(None)):
     verify_api_key(authorization)
+    db = load_db()
 
     # Search for the requested guide
     index = next((i for i, g in enumerate(db["guides"]) if str(g["id"]) == guide_id), None)
@@ -113,14 +128,46 @@ async def delete_guide(guide_id: str, authorization: Optional[str] = Header(None
     # Removes associated operation-codes
     db["opcodes"] = [o for o in db.get("opcodes", []) if str(o["guideId"]) != guide_id]
 
-    with open(db_path, "w", encoding="utf-8") as file:
-        json.dump(db, file, ensure_ascii=False, indent=2)
+    save_db(db)
 
     return {
         "status": "deleted",
         "deletedGuideId": guide_id,
         "title": deleted["title"]
     }
+
+
+#######################################################
+# Widgets
+#######################################################
+@app.get("/search-widget")
+def serve_widget():
+    with open("search-widget.js", "r", encoding="utf-8") as f:
+        js_code = f.read()
+
+    headers = {
+        "Access-Control-Allow-Origin": "https://smvs-gmbh.ch",
+        "Cross-Origin-Resource-Policy": "cross-origin",
+        "Content-Type": "application/javascript"
+    }
+
+    return Response(content=js_code, media_type="application/javascript", headers=headers)
+
+
+
+# Editor-Widget
+@app.get("/editor-widget")
+def serve_widget():
+    widget = load_widget("editor-widget.js")
+
+    headers = {
+        "Access-Control-Allow-Origin": "https://smvs-gmbh.ch",
+        "Cross-Origin-Resource-Policy": "cross-origin",
+        "Content-Type": "application/javascript"
+    }
+
+    return Response(content=widget, media_type="application/javascript", headers=headers)
+
 
 #######################################################
 # Get requests. No API-KEY needed.
@@ -129,11 +176,13 @@ async def delete_guide(guide_id: str, authorization: Optional[str] = Header(None
 # Returns all guides
 @app.get("/guides/all")
 def get_all_guides():
+    db = load_db()
     return db.get("guides", [])
 
 # Returns a specific guide based on its ID
 @app.get("/guides/{requested_guide_id}")
 def get_guide_by_id(requested_guide_id: str):
+    db = load_db()
     guide = next((g for g in db["guides"] if g["id"] == requested_guide_id), None)
     if guide is None:
         raise HTTPException(status_code=404, detail="Kein passender Guide gefunden")
@@ -142,11 +191,13 @@ def get_guide_by_id(requested_guide_id: str):
 # Returns a list of all Operation-Codes and their referenced guide
 @app.get("/opcodes/all")
 def get_all_opcodes():
+    db = load_db()
     return db.get("opcodes", [])
 
 # Used for TypeAhead. Checks available codes from left to right.
 @app.get("/opcodes/like/{this_code}")
 def get_opcodes_like(this_code: str):
+    db = load_db()
     matches = [c for c in db["opcodes"] if c["code"].startswith(str(this_code))]
     if not matches:
         raise HTTPException(status_code=404, detail="Keine passenden OP-Codes gefunden")

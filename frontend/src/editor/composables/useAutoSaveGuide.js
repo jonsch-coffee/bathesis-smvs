@@ -24,7 +24,7 @@ export function useAutoSaveGuide(guide, { saveFn, updateLocal }) {
                 lastSavedAt.value = new Date()
             })
             .catch(err => console.warn('❌ Speichern fehlgeschlagen', err))
-    }, 1500)
+    }, 1500) // <- Intervalle, in denen die Inhalte automatisch gespeichert werden
 
     watch(
         () => JSON.stringify(guide.value),

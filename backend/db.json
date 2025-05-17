@@ -1,85 +1,25 @@
 {
   "guides": [
     {
-      "id": "e392871f-b80a-47c5-a42d-3de406aa24b3",
-      "title": "Cannot reactivate - Decommissioned at other location",
+      "id": "2990956b-8832-42fa-a661-5625fda3dddb",
+      "title": "TEST_Guide",
       "steps": [
         {
-          "id": "b8ec4e9f-4d4d-4f4a-b0c4-867ae76c9d64",
-          "questionTitle": "Pack cannot be reactivated.",
-          "description": "This pack was decommissioned at another location and can only be reactivated at that location.\n\nAre you aware whether this pack has been decommissioned on your behalf by the wholesaler or pharmacy you received it from?",
+          "id": "d4c7f2c7-839c-448c-bcec-5fc7e676ee45",
+          "questionTitle": "Schritt 1TEST",
+          "description": "TEST",
           "options": [
             {
-              "id": "97927659-ff20-4851-8e35-721eaea2ecae",
-              "label": "Placeholder",
-              "target": ""
-            },
-            {
-              "id": "68e6005a-ecaf-4823-bf43-1eb13f7c2cff",
-              "label": "Dummy",
-              "target": "7d5b0dc4-15a4-41e2-a333-162a1cea94e4"
+              "id": "4442186e-7853-4c31-b959-9050f0c18e96",
+              "label": "TESTTTT",
+              "target": "86ea9bbb-07a9-4177-87be-2855b6fb698d"
             }
           ]
         },
         {
-          "id": "7d5b0dc4-15a4-41e2-a333-162a1cea94e4",
-          "questionTitle": "Echt cooool",
+          "id": "86ea9bbb-07a9-4177-87be-2855b6fb698d",
+          "questionTitle": "Schritt 2TTT",
           "description": "",
-          "options": []
-        }
-      ],
-      "opCodes": []
-    },
-    {
-      "id": "a9a56753-becc-40b2-a6a4-efe737b0ecdd",
-      "title": "Neuer Guidess",
-      "steps": [
-        {
-          "id": "ffbc7d33-c5f1-4015-990b-7d7842ddb5b8",
-          "questionTitle": "Total Cool!",
-          "description": "",
-          "options": []
-        }
-      ],
-      "opCodes": [
-        "44222222"
-      ]
-    },
-    {
-      "id": "2b364e55-2ce7-4e1e-a40d-02d2c1331e32",
-      "title": "Neuer Guide",
-      "steps": [
-        {
-          "id": "be53d0b4-0b85-4bd8-b81c-02faf036cb57",
-          "questionTitle": "Testscrhitt 1",
-          "description": "Super cool ",
-          "options": []
-        }
-      ],
-      "opCodes": [
-        "88728872"
-      ]
-    },
-    {
-      "id": "22af00b8-0791-46ba-9d93-866dd56a734b",
-      "title": "Super cooler Guide",
-      "steps": [
-        {
-          "id": "93542bbe-a906-4114-9541-81b410567fe3",
-          "questionTitle": "Schritt 1",
-          "description": "[SMVS-GmbH Homepage](https://smvs-gmbh.ch)\n\n1. Auflistungspunkt 1\n2. Cooler Punkt\n3. **Fett?**\n\nNaja, das wars!\n",
-          "options": [
-            {
-              "id": "f91f69e8-31c5-4a1f-83d1-7c329a25ac03",
-              "label": "Oder doch nicht?!",
-              "target": "bccd3757-77c9-4e8a-8e6e-5d71e24c7531"
-            }
-          ]
-        },
-        {
-          "id": "bccd3757-77c9-4e8a-8e6e-5d71e24c7531",
-          "questionTitle": "Schritt 2",
-          "description": "Doch jetzt ;D",
           "options": []
         }
       ],
@@ -90,16 +30,8 @@
   ],
   "opcodes": [
     {
-      "code": "88728872",
-      "guideId": "2b364e55-2ce7-4e1e-a40d-02d2c1331e32"
-    },
-    {
       "code": "12345678",
-      "guideId": "22af00b8-0791-46ba-9d93-866dd56a734b"
-    },
-    {
-      "code": "44222222",
-      "guideId": "a9a56753-becc-40b2-a6a4-efe737b0ecdd"
+      "guideId": "2990956b-8832-42fa-a661-5625fda3dddb"
     }
   ]
 }

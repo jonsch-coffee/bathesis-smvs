@@ -45,36 +45,43 @@
 
 <template>
   <div>
-    <div v-if="!selectedGuideId" class="container d-flex justify-content-center align-items-center" style="min-height: 100vh;">
-      <div style="width: 100%; max-width: 500px;">
-        <div class="alert alert-warning" v-if="error">
-          Keinen Operation-Code mit dieser Reihenfolge gefunden!
+    <div v-if="!selectedGuideId">
+      <div class="container justify-content-center" style="max-width: 500px;">
+        <div class="row" style="margin-top: 15px">
+          <div class="alert alert-warning" v-if="error">
+            Es konnte kein passender Operation-Code gefunden werden!
+          </div>
         </div>
 
-        <v-otp-input
-            ref="otpInput"
-            input-classes="otp-input"
-            :conditionalClass="['one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight']"
-            separator=" "
-            inputType="letter-numeric"
-            :num-inputs="8"
-            v-model:value="query"
-            :should-auto-focus="true"
-            :should-focus-order="true"
-            @on-complete="handleSearchInput"
-            :placeholder="['0', '0', '0', '0', '0', '0', '0', '0']"
-        />
+        <div class="row">
+          <v-otp-input
+              ref="otpInput"
+              input-classes="otp-input"
+              :conditionalClass="['one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight']"
+              separator=" "
+              inputType="letter-numeric"
+              :num-inputs="8"
+              v-model:value="query"
+              :should-auto-focus="true"
+              :should-focus-order="true"
+              @on-complete="handleSearchInput"
+              :placeholder="['0', '0', '0', '0', '0', '0', '0', '0']"
+          />
+        </div>
 
-        <ul class="list-group" v-if="suggestions.length">
-          <li
-              v-for="s in suggestions"
-              :key="s.code"
-              class="list-group-item list-group-item-action"
-              @click="selectedGuideId = s.guideId"
-          >
-            {{ s.code }}
-          </li>
-        </ul>
+        <div class="row" style="margin-top: 15px; width: 390px;">
+          <ul class="list-group" v-if="suggestions.length">
+            <li
+                v-for="s in suggestions"
+                :key="s.code"
+                class="list-group-item list-group-item-action"
+                @click="selectedGuideId = s.guideId"
+            >
+              {{ s.code }}
+            </li>
+          </ul>
+        </div>
+
       </div>
     </div>
 
@@ -93,7 +100,7 @@
   width: 40px;
   height: 40px;
   padding: 5px;
-  margin: 0 10px;
+  margin: 0 2px;
   font-size: 20px;
   border-radius: 4px;
   border: 1px solid rgba(0, 0, 0, 0.3);
