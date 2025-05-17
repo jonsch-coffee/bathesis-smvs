@@ -19,10 +19,10 @@ defineProps({
 <template>
   <div class="mt-4">
     <button class="btn btn-light me-2" @click="onBackToSearch">
-      Restart
+      Zurück zur Suche
     </button>
     <button class="btn btn-light" :disabled="!hasPrev" @click="onGoBack">
-      Last step
+      Zuletzt gezeigter Schritt
     </button>
   </div>
 </template>

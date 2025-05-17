@@ -1,6 +1,6 @@
 <script setup>
 // eslint-disable-next-line
-  import { onMounted, ref } from 'vue'
+  import { onMounted, ref, defineProps, defineEmits } from 'vue'
 
   // Components
   import GuideStep from '../components/GuideStep.vue'
@@ -12,12 +12,10 @@
   import { useGuideSteps } from '../composables/useGuideSteps'
   import { getGuideElement } from '@/shared/services/guideService'
 
-// eslint-disable-next-line no-undef,no-unused-vars
   const props = defineProps({
     guideId: String
   })
 
-// eslint-disable-next-line no-undef
   const emit = defineEmits(['back'])
 
   function goBack() {
@@ -51,8 +49,8 @@
 </script>
 
 <template>
-  <div v-if="loading" class="text-muted">Loading guide...</div>
-  <div v-else-if="error" class="alert alert-danger">Failed to load guide.</div>
+  <div v-if="loading" class="text-muted">Bitte warten...</div>
+  <div v-else-if="error" class="alert alert-danger">Guide konnte nicht geladen werden.</div>
   <div v-else-if="currentStep">
     <h3>{{ guide.title }}</h3>
 

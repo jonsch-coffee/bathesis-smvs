@@ -9,6 +9,7 @@ import {updateGuide, createGuide, deleteGuide} from '../services/guideEditServic
 
 import StepEditorList from '../components/StepEditorList'
 import { useGuideStore } from "@/editor/stores/guideStore";
+import OpCodeManager from "@/editor/components/OpCodeManager.vue";
 
 const api = useEditorApiClient()
 
@@ -16,7 +17,8 @@ const guideStore = useGuideStore()
 const {
   allGuides,
   selectedGuideId,
-  guide
+  guide,
+  lastSavedAt
 } = storeToRefs(guideStore)
 
 onMounted(async () => {
@@ -76,16 +78,20 @@ async function handleDeleteGuide() {
 
     <div class="btn-group mb-4">
       <button class="btn btn-success" @click="handleCreateGuide">➕ Neuer Guide</button>
+      <OpCodeManager :isDiabled="!selectedGuideId" />
       <button class="btn btn-danger" @click="handleDeleteGuide" :disabled="!selectedGuideId">🗑️ Löschen</button>
     </div>
 
+    <p v-if="lastSavedAt" class="text-muted mt-2">
+      Zuletzt gespeichert: {{ lastSavedAt.toLocaleTimeString() }}
+    </p>
+
     <!-- Aktueller Guide -->
     <div v-if="guide.title !== ''">
+      <hr>
       <label>Titel</label>
       <input class="form-control mb-3" v-model="guide.title" placeholder="Titel des Guides" />
-
-      <p><strong>ID:</strong> {{ guide.id }}</p>
-      <p><strong>Anzahl Schritte:</strong> {{ guide.steps.length }}</p>
+      <hr>
 
       <StepEditorList />
 

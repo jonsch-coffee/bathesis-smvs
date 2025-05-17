@@ -1,5 +1,7 @@
 import { watch } from 'vue'
+import { useGuideStore } from "../stores/guideStore";
 import debounce from 'lodash/debounce'
+import {storeToRefs} from "pinia";
 
 /**
  * Überwacht ein Guide-Objekt und speichert es automatisch über den bereitgestellten Service.
@@ -9,7 +11,9 @@ import debounce from 'lodash/debounce'
  * @param updateLocal
  */
 export function useAutoSaveGuide(guide, { saveFn, updateLocal }) {
-    console.log('🧪 useAutoSaveGuide initialisiert', guide)
+    const guideStore = useGuideStore()
+    const { lastSavedAt } = storeToRefs(guideStore)
+
     const debouncedSave = debounce(() => {
         if (!guide.value?.id || !guide.value?.title) return// Prüft, ob Titel und ID vorhanden sind, bevor die Änderungen ans Backend geschickt werden
         console.log('📤 PATCH-Daten:', JSON.stringify(guide.value, null, 2))
@@ -17,6 +21,7 @@ export function useAutoSaveGuide(guide, { saveFn, updateLocal }) {
             .then(() => {
                 updateLocal(guide.value) // über alle komponenten hinweg synchronisieren
                 console.log('✅ Guide gespeichert')
+                lastSavedAt.value = new Date()
             })
             .catch(err => console.warn('❌ Speichern fehlgeschlagen', err))
     }, 1500)

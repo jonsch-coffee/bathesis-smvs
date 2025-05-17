@@ -9,7 +9,8 @@ export const useGuideStore = defineStore('guide', {
             title: '',
             steps: [],
             opCodes: []
-        }
+        },
+        lastSavedAt: null
     }),
 
     getters: {

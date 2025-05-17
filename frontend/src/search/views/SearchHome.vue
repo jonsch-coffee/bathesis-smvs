@@ -16,7 +16,7 @@
 
   const selectedGuideId = ref('')
 
-  function checkSearchInput() {
+  function handleSearchInput() {
     const match = suggestions.value.find(s => s.code === query.value)
     if (match) {
       selectedGuideId.value = match.guideId
@@ -32,7 +32,7 @@
         const { data } = await getGuideSuggestions(api, newValue)
         suggestions.value = data
       } catch (e) {
-        console.error(e)
+        error.value = true
         suggestions.value = []
       }
     } else {
@@ -44,44 +44,38 @@
 
 
 <template>
-  <div class="w-100 w-md-75 mx-auto">
-    <div v-if="!selectedGuideId">
-      <div class="alert alert-warning" v-if="error">
-        Operation-Code not found!
+  <div>
+    <div v-if="!selectedGuideId" class="container d-flex justify-content-center align-items-center" style="min-height: 100vh;">
+      <div style="width: 100%; max-width: 500px;">
+        <div class="alert alert-warning" v-if="error">
+          Keinen Operation-Code mit dieser Reihenfolge gefunden!
+        </div>
+
+        <v-otp-input
+            ref="otpInput"
+            input-classes="otp-input"
+            :conditionalClass="['one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight']"
+            separator=" "
+            inputType="letter-numeric"
+            :num-inputs="8"
+            v-model:value="query"
+            :should-auto-focus="true"
+            :should-focus-order="true"
+            @on-complete="handleSearchInput"
+            :placeholder="['0', '0', '0', '0', '0', '0', '0', '0']"
+        />
+
+        <ul class="list-group" v-if="suggestions.length">
+          <li
+              v-for="s in suggestions"
+              :key="s.code"
+              class="list-group-item list-group-item-action"
+              @click="selectedGuideId = s.guideId"
+          >
+            {{ s.code }}
+          </li>
+        </ul>
       </div>
-<!--
-      <input
-          v-model="query"
-          type="text"
-          class="form-control mb-3"
-          placeholder="Enter Operation-Code"
-          @keydown.enter="checkSearchInput"
-      /> -->
-
-      <v-otp-input
-          ref="otpInput"
-          input-classes="otp-input"
-          :conditionalClass="['one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight']"
-          separator=" "
-          inputType="letter-numeric"
-          :num-inputs="8"
-          v-model:value="query"
-          :should-auto-focus="true"
-          :should-focus-order="true"
-          @on-change="checkSearchInput"
-          :placeholder="['*', '*', '*', '*', '*', '*', '*', '*']"
-      />
-
-      <ul class="list-group" v-if="suggestions.length">
-        <li
-            v-for="s in suggestions"
-            :key="s.code"
-            class="list-group-item list-group-item-action"
-            @click="selectedGuideId = s.guideId"
-        >
-          {{ s.code }}
-        </li>
-      </ul>
     </div>
 
     <!-- Show step-by-step guide as soon as an operation-cpde has been chosen -->
@@ -120,4 +114,3 @@ input::placeholder {
   font-weight: 600;
 }
 </style>
-cam
