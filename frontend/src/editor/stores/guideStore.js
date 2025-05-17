@@ -50,11 +50,13 @@ export const useGuideStore = defineStore('guide', {
 
         deleteGuide() {
             if (!this.selectedGuideId) return
-            const confirmed = confirm('Diesen Guide wirklich löschen?')
-            if (!confirmed) return
             this.allGuides = this.allGuides.filter(g => g.id !== this.selectedGuideId)
             this.guide = { id: '', title: '', steps: [], opCodes: [] }
             this.selectedGuideId = null
+        },
+
+        removeStepById(stepId) {
+            this.guide.steps = this.guide.steps.filter(s => s.id !== stepId)
         }
     }
 })

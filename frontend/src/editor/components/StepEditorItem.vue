@@ -3,18 +3,19 @@ import { computed } from 'vue'
 import { useGuideStore } from '../stores/guideStore'
 import { v4 as uuidv4 } from 'uuid'
 
+
 // eslint-disable-next-line no-undef
 const props = defineProps({
   index: Number
 })
 
-const store = useGuideStore()
+const guideStore = useGuideStore()
 
-const step = computed(() => store.guide.steps[props.index])
+const step = computed(() => guideStore.guide.steps[props.index])
 
 // Den aktuellen Schritt ausschliessen in Optionsauswahl
 const allSteps = computed(() =>
-    store.guide.steps.filter((_, i) => i !== props.index)
+    guideStore.guide.steps.filter((_, i) => i !== props.index)
 )
 
 function addOption() {
@@ -83,6 +84,12 @@ function removeOption(optionId) {
 
         <button class="btn btn-sm btn-outline-primary mt-2" @click="addOption">
           ➕ Option hinzufügen
+        </button>
+        <button
+            class="btn btn-sm btn-outline-danger mt-2"
+            @click="guideStore.removeStepById(step.id)"
+        >
+          🗑️ Schritt löschen
         </button>
       </div>
     </div>

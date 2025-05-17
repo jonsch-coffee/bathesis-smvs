@@ -5,7 +5,7 @@ import { getAllGuides } from '@/shared/services/guideService'
 
 import { storeToRefs } from "pinia";
 import { useAutoSaveGuide } from '../composables/useAutoSaveGuide'
-import { updateGuide, createGuide, deleteGuide } from '../services/guideEditService'
+import {updateGuide, createGuide, deleteGuide} from '../services/guideEditService'
 
 import StepEditorList from '../components/StepEditorList'
 import { useGuideStore } from "@/editor/stores/guideStore";
@@ -40,14 +40,27 @@ useAutoSaveGuide(guide, {
 
 async function handleCreateGuide() {
   const title = window.prompt('Gib einen Titel für den neuen Guide ein:')
-  const res = await createGuide(api, title)
-  console.log('Neuer Guide:', res.data)
-  guideStore.createNewGuide(res.data)
+  try {
+    const res = await createGuide(api, title)
+    console.log('Neuer Guide:', res.data)
+    guideStore.createNewGuide(res.data)
+  } catch (e) {
+    alert('Fehler beim Erstellen des neuen Guides!')
+  }
 }
 
-function deleteSelectedGuide() {
-    deleteGuide(api, selectedGuideId)
-    guideStore.deleteGuide(selectedGuideId)
+async function handleDeleteGuide() {
+  const confirmed = confirm('Diesen Guide wirklich löschen?')
+  if (!confirmed) return
+  try {
+    const response = await deleteGuide(api, selectedGuideId.value)
+    if(response) {
+      guideStore.deleteGuide(selectedGuideId)
+      alert('Guide erfolgreich gelöscht. Bitte nun einen neuen aus der Liste unter Guide Editor auswählen.')
+    }
+  } catch (err) {
+    alert('Guide konnte nicht gelöscht werden!')
+  }
 }
 
 
@@ -63,11 +76,11 @@ function deleteSelectedGuide() {
 
     <div class="btn-group mb-4">
       <button class="btn btn-success" @click="handleCreateGuide">➕ Neuer Guide</button>
-      <button class="btn btn-danger" @click="deleteSelectedGuide" :disabled="!selectedGuideId">🗑️ Löschen</button>
+      <button class="btn btn-danger" @click="handleDeleteGuide" :disabled="!selectedGuideId">🗑️ Löschen</button>
     </div>
 
     <!-- Aktueller Guide -->
-    <div v-if="guide">
+    <div v-if="guide.title !== ''">
       <label>Titel</label>
       <input class="form-control mb-3" v-model="guide.title" placeholder="Titel des Guides" />
 
