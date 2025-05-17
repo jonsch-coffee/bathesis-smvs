@@ -1,10 +1,9 @@
 import { defineStore } from 'pinia'
-import { v4 as uuidv4 } from 'uuid'
 
 export const useGuideStore = defineStore('guide', {
     state: () => ({
         allGuides: [],
-        selectedGuideId: 0,
+        selectedGuideId: '',
         guide: {
             id: '',
             title: '',
@@ -25,14 +24,14 @@ export const useGuideStore = defineStore('guide', {
     actions: {
         setAllGuides(guides) {
             console.log('SET allGuides:', guides, typeof guides)
-            console.log('this.allGuides:', this.allGuides)
             this.allGuides = guides
+            console.log('this.allGuides:', this.allGuides)
         },
 
         selectGuideById(id) {
-            const selected = this.allGuides.find(g => g.id === Number(id))
+            const selected = this.allGuides.find(g => g.id === id)
             if (!selected) return
-            this.guide = JSON.parse(JSON.stringify(selected))
+            Object.assign(this.guide, selected)
             this.selectedGuideId = id
         },
 
@@ -43,15 +42,9 @@ export const useGuideStore = defineStore('guide', {
             }
         },
 
-        createNewGuide() {
-            const newGuide = {
-                id: uuidv4(),
-                title: '',
-                steps: [],
-                opCodes: []
-            }
+        createNewGuide(newGuide) {
             this.allGuides.push(newGuide)
-            this.guide = newGuide
+            Object.assign(this.guide, newGuide)
             this.selectedGuideId = newGuide.id
         },
 

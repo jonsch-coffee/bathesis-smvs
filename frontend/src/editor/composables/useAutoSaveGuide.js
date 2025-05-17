@@ -12,9 +12,10 @@ export function useAutoSaveGuide(guide, { saveFn, updateLocal }) {
     console.log('🧪 useAutoSaveGuide initialisiert', guide)
     const debouncedSave = debounce(() => {
         if (!guide.value?.id || !guide.value?.title) return// Prüft, ob Titel und ID vorhanden sind, bevor die Änderungen ans Backend geschickt werden
+        console.log('📤 PATCH-Daten:', JSON.stringify(guide.value, null, 2))
         saveFn(guide.value) // Nutzt den mitgelieferten API-Call
             .then(() => {
-                updateLocal(guide.value)
+                updateLocal(guide.value) // über alle komponenten hinweg synchronisieren
                 console.log('✅ Guide gespeichert')
             })
             .catch(err => console.warn('❌ Speichern fehlgeschlagen', err))

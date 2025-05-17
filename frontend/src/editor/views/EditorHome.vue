@@ -28,7 +28,8 @@ onMounted(async () => {
   }
 })
 
-watch(selectedGuideId, (newId) =>  { // bei neu-auswahl werden änderungen nicht gespeichert!
+watch(selectedGuideId, (newId) => {
+  console.log('🌀 Neuer Guide ausgewählt:', newId)
   guideStore.selectGuideById(newId)
 })
 
@@ -37,9 +38,11 @@ useAutoSaveGuide(guide, {
   updateLocal: (guide) => guideStore.updateGuideLocally(guide)
 })
 
-function createNewGuide() {
-  guideStore.createNewGuide()
-  createGuide(api, guide)
+async function handleCreateGuide() {
+  const title = window.prompt('Gib einen Titel für den neuen Guide ein:')
+  const res = await createGuide(api, title)
+  console.log('Neuer Guide:', res.data)
+  guideStore.createNewGuide(res.data)
 }
 
 function deleteSelectedGuide() {
@@ -59,7 +62,7 @@ function deleteSelectedGuide() {
     </select>
 
     <div class="btn-group mb-4">
-      <button class="btn btn-success" @click="createNewGuide">➕ Neuer Guide</button>
+      <button class="btn btn-success" @click="handleCreateGuide">➕ Neuer Guide</button>
       <button class="btn btn-danger" @click="deleteSelectedGuide" :disabled="!selectedGuideId">🗑️ Löschen</button>
     </div>
 

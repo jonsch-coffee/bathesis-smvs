@@ -13,9 +13,8 @@ export function updateGuide(api, guide) {
     return api.patch(`/guides/${guide.id}`, guide)
 }
 
-export function createGuide(api, guide) {
-    console.log(guide.value)
-    return api.post(`/guides/create`, guide.value)
+export function createGuide(api, newTitle) {
+    return api.post(`/guides/create`, { title: newTitle })
 }
 
 export function deleteGuide(api, id) {
