@@ -1,7 +1,7 @@
 {
   "guides": [
     {
-      "id": 1744474836672,
+      "id": "e392871f-b80a-47c5-a42d-3de406aa24b3",
       "title": "Cannot reactivate - Decommissioned at other location",
       "steps": [
         {
@@ -11,315 +11,95 @@
           "options": [
             {
               "id": "97927659-ff20-4851-8e35-721eaea2ecae",
-              "label": "Yes",
-              "target": "e392871f-b80a-47c5-a42d-3de406aa24b3"
+              "label": "Placeholder",
+              "target": ""
             },
             {
               "id": "68e6005a-ecaf-4823-bf43-1eb13f7c2cff",
-              "label": "No",
-              "target": "9c1a4bb9-d181-493f-92b2-7bf8889504ee"
+              "label": "Dummy",
+              "target": "7d5b0dc4-15a4-41e2-a333-162a1cea94e4"
             }
           ]
         },
         {
-          "id": "e392871f-b80a-47c5-a42d-3de406aa24b3",
-          "questionTitle": "Packs that have been supplied in one location may only be reactivated in the same location.",
-          "description": "If you tried to reactivate the pack due to a procedural error, please document the root cause of the alert in NMVS Alerts. Once documented, the investigation is complete and the pack may be returned to saleable stock.",
-          "options": []
-        },
-        {
-          "id": "9c1a4bb9-d181-493f-92b2-7bf8889504ee",
-          "questionTitle": "Is this a borrowed pack?",
+          "id": "7d5b0dc4-15a4-41e2-a333-162a1cea94e4",
+          "questionTitle": "Echt cooool",
           "description": "",
-          "options": [
-            {
-              "id": "e5214e28-36ad-4abb-891f-63378309a2e2",
-              "label": "Yes",
-              "target": "b4745398-782a-43a6-8592-b32c3875a1e1"
-            },
-            {
-              "id": "3a89d5b1-c2a3-441d-8609-b4e1197f3faa",
-              "label": "No",
-              "target": "2cd665c9-1a6f-4e98-a11b-403cb0449d18"
-            }
-          ]
-        },
-        {
-          "id": "b4745398-782a-43a6-8592-b32c3875a1e1",
-          "questionTitle": "Borrowed pack",
-          "description": "If the pack was decommissioned at the location you borrowed it from, you cannot reactivate it. If possible, ask the location you borrowed it from to reactivate it, but that can only be done within 10 days of the pack getting decommissioned. If you are certain that the pack was previously decommissioned at another location due to a procedural error, please document the root cause of the alert in NMVS Alerts. Once documented, the investigation is complete and the pack may be returned to saleable stock.",
           "options": []
-        },
+        }
+      ],
+      "opCodes": []
+    },
+    {
+      "id": "a9a56753-becc-40b2-a6a4-efe737b0ecdd",
+      "title": "Neuer Guidess",
+      "steps": [
         {
-          "id": "2cd665c9-1a6f-4e98-a11b-403cb0449d18",
-          "questionTitle": "Not borrowed pack",
-          "description": "Please set this pack aside and contact SMVS-GmbH for assistance.",
+          "id": "ffbc7d33-c5f1-4015-990b-7d7842ddb5b8",
+          "questionTitle": "Total Cool!",
+          "description": "",
           "options": []
         }
       ],
       "opCodes": [
-        "51420900"
+        "44222222"
       ]
     },
     {
-      "id": 1783888107,
-      "title": "Cannot Decommission",
+      "id": "2b364e55-2ce7-4e1e-a40d-02d2c1331e32",
+      "title": "Neuer Guide",
       "steps": [
         {
-          "id": "201fa989-86c0-407d-9cd8-67424e15651b",
-          "questionTitle": "This pack has already been decommissioned. TEST",
-          "description": "Set the pack aside and contact SMVS GmbH for help with this alert. SMVS GmbH will need to run a pack audit trail for this pack to check the history of the pack because this is an uncommon alert.",
-          "options": [
-            {
-              "id": "6355938a-00b6-48a2-adf6-04dc65ae1b61",
-              "label": "Weiter",
-              "target": "2ebadbeb-5c94-4f41-b324-1c858976d710"
-            }
-          ]
-        },
-        {
-          "id": "2ebadbeb-5c94-4f41-b324-1c858976d710",
-          "questionTitle": "Test",
-          "description": "Test\n\n**Dieser Text ist fett.**",
+          "id": "be53d0b4-0b85-4bd8-b81c-02faf036cb57",
+          "questionTitle": "Testscrhitt 1",
+          "description": "Super cool ",
           "options": []
         }
       ],
       "opCodes": [
-        "51220300",
-        "51220800",
-        "51220900",
-        "51320800",
-        "51320900"
+        "88728872"
       ]
     },
     {
-      "id": 1745082314231,
-      "title": "Medizininformatik 🩺",
+      "id": "22af00b8-0791-46ba-9d93-866dd56a734b",
+      "title": "Super cooler Guide",
       "steps": [
         {
-          "id": "baacd838-506e-4db1-8abd-75aeedcc4978",
-          "questionTitle": "Was ist das?",
-          "description": "Medizininformatik ist die Schnittstelle zwischen Informatik, Medizin und Gesundheitswesen. Ziel ist es, medizinische Daten (z. B. aus Krankenhäusern, Forschung oder Patientenakten) systematisch zu erfassen, zu analysieren und für Diagnostik, Therapie oder Verwaltung nutzbar zu machen.",
-          "options": [
-            {
-              "id": "f35bf859-1fec-4f9c-911e-8c72b9351221",
-              "label": "Weiter 🕺",
-              "target": "8d6f6dcd-26b0-4a2d-801a-49fcd0edd8bf"
-            }
-          ]
-        },
-        {
-          "id": "8d6f6dcd-26b0-4a2d-801a-49fcd0edd8bf",
-          "questionTitle": "Kann man hier studieren 👨‍🎓👩‍🎓",
-          "description": "https://www.bfh.ch/de/studium/bachelor/medizininformatik/\n\n😎🆙",
-          "options": []
-        }
-      ],
-      "opCodes": [
-        "12345678"
-      ]
-    },
-    {
-      "id": 1745258758308,
-      "title": "TEST",
-      "steps": [
-        {
-          "id": "57623fe8-7c9c-4617-a754-bbac99a1d62c",
+          "id": "93542bbe-a906-4114-9541-81b410567fe3",
           "questionTitle": "Schritt 1",
-          "description": "TEST",
+          "description": "[SMVS-GmbH Homepage](https://smvs-gmbh.ch)\n\n1. Auflistungspunkt 1\n2. Cooler Punkt\n3. **Fett?**\n\nNaja, das wars!\n",
+          "options": [
+            {
+              "id": "f91f69e8-31c5-4a1f-83d1-7c329a25ac03",
+              "label": "Oder doch nicht?!",
+              "target": "bccd3757-77c9-4e8a-8e6e-5d71e24c7531"
+            }
+          ]
+        },
+        {
+          "id": "bccd3757-77c9-4e8a-8e6e-5d71e24c7531",
+          "questionTitle": "Schritt 2",
+          "description": "Doch jetzt ;D",
           "options": []
         }
       ],
       "opCodes": [
         "12345678"
-      ]
-    },
-    {
-      "id": 1745770589053,
-      "title": "#A3 The batch is recognised by the SMVS but this serial number was not found in the system at the time of the scan.",
-      "steps": [
-        {
-          "id": "02b30913-63e7-4914-bc0f-e2f88ecf7179",
-          "questionTitle": "Check for manual data entry issue (procedural error)s",
-          "description": "[Link text Here](https://link-url-here.org)\n- Bacon\n- Ham\n- Eggs \n1. TEST\n2. st The most common procedural error that may have caused this is wrong manual entry.\n\nHave you entered the data manually?",
-          "options": [
-            {
-              "id": "89052873-576f-4b14-9585-f6a421ae744a",
-              "label": "Yes",
-              "target": "bab47555-8f19-49c0-a0f8-2f2044dcae64"
-            },
-            {
-              "id": "7d199f78-539b-4a87-9b3d-e868ee38ad91",
-              "label": "No",
-              "target": "8f70b462-bb6d-43d7-bd49-da6aebfe37e3"
-            }
-          ]
-        },
-        {
-          "id": "bab47555-8f19-49c0-a0f8-2f2044dcae64",
-          "questionTitle": "Retype the package-data carefully!",
-          "description": "Check that the entered data matches what is printed on the package. Retype it carefully and verify the input.\n\nIs the pack successfully verified?",
-          "options": [
-            {
-              "id": "d2e335e4-c6a2-42df-923c-762393d1e580",
-              "label": "Yes",
-              "target": "756b42df-6ee2-4172-8d5d-6cbe1879e06d"
-            },
-            {
-              "id": "cbbf9d76-40f2-4062-8af3-d338d71c4f35",
-              "label": "No",
-              "target": "8f70b462-bb6d-43d7-bd49-da6aebfe37e3"
-            }
-          ]
-        },
-        {
-          "id": "756b42df-6ee2-4172-8d5d-6cbe1879e06d",
-          "questionTitle": "Procedural cause found and corrected",
-          "description": "Once the verification scan has resulted in a successful verification, the pack can be returned to saleable stock.\n\nIf your Point of Sales (POS) software told you that ‘an alert has been raised’, please document the root cause of the alert in NMVS Alerts. Once documented the investigation is complete.",
-          "options": []
-        },
-        {
-          "id": "8f70b462-bb6d-43d7-bd49-da6aebfe37e3",
-          "questionTitle": "NMVS Alerts updates",
-          "description": "Alerts that are widely known may already have an investigation underway to determine the root cause. Check the current status of the NMVS Alerts investigation. \n\nHas the root cause been identified by SMVS or MAH?",
-          "options": [
-            {
-              "id": "f5b3694b-941f-41f9-8277-b4206fdbca9e",
-              "label": "Yes",
-              "target": "2a003663-eb6d-4e02-af75-ba1ab47a50f9"
-            },
-            {
-              "id": "89cbd431-09b5-4e4e-9948-c8bfbc7f0dad",
-              "label": "No",
-              "target": "2dd51d5d-4a1c-43d7-9367-328d62e460f3"
-            }
-          ]
-        },
-        {
-          "id": "2a003663-eb6d-4e02-af75-ba1ab47a50f9",
-          "questionTitle": "Root cause found and corrected",
-          "description": "A verification scan of the pack should be undertaken to determine if the corrective action has been successful. \n\nIf the verification scan is successful, the pack may be returned to saleable stock. ",
-          "options": []
-        },
-        {
-          "id": "2dd51d5d-4a1c-43d7-9367-328d62e460f3",
-          "questionTitle": "End-user technical check",
-          "description": "Locate a package where the human-readable text (such as the product name or batch number) is clearly visible. \n\nOpen any text editor on your computer and ensure you can type characters from your keyboard, which confirms your keyboard input is functioning correctly. \n\nNext, scan the package’s code and compare the scanned output in Notepad to the human-readable text you see on the package.\n\nDoes the scanned output not match the human-readable text on the package?",
-          "options": [
-            {
-              "id": "1e3360ea-c212-44b1-88ab-9645808d5c24",
-              "label": "Yes",
-              "target": "11132968-e4bc-417d-ace5-225238213fc9"
-            },
-            {
-              "id": "a671ce7d-bdd0-4bcb-bc96-9ab351577137",
-              "label": "No",
-              "target": "93a690f5-3576-47eb-8ae9-1432b528ba0d"
-            },
-            {
-              "id": "800c64a8-4169-4d18-9d17-e2eb27414ad7",
-              "label": "Human readable text is not visible",
-              "target": "93a690f5-3576-47eb-8ae9-1432b528ba0d"
-            }
-          ]
-        },
-        {
-          "id": "11132968-e4bc-417d-ace5-225238213fc9",
-          "questionTitle": "Technical error found and corrected",
-          "description": "A verification scan of the pack should be undertaken to determine if the corrective action has been successful. \n\nIf the verification scan is successful, the pack may be returned to saleable stock. If your Point of Sales (POS) software told you that ‘an alert has been raised’, please document the root cause of the alert in NMVS Alerts. \n\nOnce documented the investigation is complete.  ",
-          "options": []
-        },
-        {
-          "id": "93a690f5-3576-47eb-8ae9-1432b528ba0d",
-          "questionTitle": "End-user technical check (sample codes)",
-          "description": "If the human readable text is not clearly visible, open the provided link and review the sheet containing the data-matrix codes with their sample outputs. \n\nOpen any text editor on your computer and verify that you can type characters from your keyboard. Use your scanner to scan one of the visible data-matrix codes from the sheet and then compare the scanned output to the sample output listed on the sheet.\n\nDoes the sample output differ from the one shown on the sheet?",
-          "options": [
-            {
-              "id": "6b5e98db-1342-468e-babd-344391fbd0c8",
-              "label": "Yes",
-              "target": "2a003663-eb6d-4e02-af75-ba1ab47a50f9"
-            },
-            {
-              "id": "7147b681-e0cd-4a5d-8ef8-ab95bd0edc96",
-              "label": "No",
-              "target": "691d9439-1e0e-449d-9192-c4c4a3aa28b5"
-            }
-          ]
-        },
-        {
-          "id": "691d9439-1e0e-449d-9192-c4c4a3aa28b5",
-          "questionTitle": "Recommendation: Use NMVS-EVA (NMVS Backup System)",
-          "description": "You may use the NMVS-EVA (NMVS Backup System) to manually perform the desired action to maintain continuity in your work.\n\nIf successful it is advisable to fix the POS issue as soon as possible!\n\nWhere you able to perform the action manually?\n",
-          "options": [
-            {
-              "id": "3ad3e585-ea53-4688-abd9-df88c4ebc545",
-              "label": "Yes",
-              "target": "2a003663-eb6d-4e02-af75-ba1ab47a50f9"
-            },
-            {
-              "id": "1cf5b16a-4e18-404f-bf5a-c006c4ba3408",
-              "label": "No",
-              "target": "73d99de3-9e1a-48d6-ad3b-b095d89d50bb"
-            },
-            {
-              "id": "2d9961cd-0a11-457f-b86f-77e08ebc3f1e",
-              "label": "Skip",
-              "target": "73d99de3-9e1a-48d6-ad3b-b095d89d50bb"
-            }
-          ]
-        },
-        {
-          "id": "73d99de3-9e1a-48d6-ad3b-b095d89d50bb",
-          "questionTitle": "Set the pack aside",
-          "description": "If a root cause is still unknown at this stage, the package must continue to be withheld from saleable stock while you await feedback from the MAH.",
-          "options": []
-        }
-      ],
-      "opCodes": [
-        "41020011"
       ]
     }
   ],
   "opcodes": [
     {
-      "code": "12345678",
-      "guideId": 1745082314231
+      "code": "88728872",
+      "guideId": "2b364e55-2ce7-4e1e-a40d-02d2c1331e32"
     },
     {
       "code": "12345678",
-      "guideId": 1745258758308
+      "guideId": "22af00b8-0791-46ba-9d93-866dd56a734b"
     },
     {
-      "code": "51220300",
-      "guideId": 1783888107
-    },
-    {
-      "code": "51220800",
-      "guideId": 1783888107
-    },
-    {
-      "code": "51220900",
-      "guideId": 1783888107
-    },
-    {
-      "code": "51320800",
-      "guideId": 1783888107
-    },
-    {
-      "code": "51320900",
-      "guideId": 1783888107
-    },
-    {
-      "code": "51420900",
-      "guideId": 1744474836672
-    },
-    {
-      "code": "41020011",
-      "guideId": 1745770589053
-    },
-    {
-      "code": "4102003",
-      "guideId": 1745770589053
+      "code": "44222222",
+      "guideId": "a9a56753-becc-40b2-a6a4-efe737b0ecdd"
     }
   ]
 }

@@ -26,8 +26,6 @@ export function useAutoSaveGuide(guide, { saveFn, updateLocal }) {
             .catch(err => console.warn('❌ Speichern fehlgeschlagen', err))
     }, 1500)
 
-    //watch(guide, debouncedSave, { deep: true })
-
     watch(
         () => JSON.stringify(guide.value),
         () => {

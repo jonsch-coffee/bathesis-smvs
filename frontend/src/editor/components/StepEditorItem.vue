@@ -46,7 +46,7 @@ function removeOption(optionId) {
           class="form-control mb-2"
           v-model="step.description"
           placeholder="Beschreibung"
-          rows="3"
+          rows="10"
       ></textarea>
 
       <!-- Optionen -->
