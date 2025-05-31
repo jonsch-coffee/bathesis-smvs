@@ -2,7 +2,7 @@
 
 This project originated in the Bachelorthesis "Decision-Support für Alertmeldungen im SMVS" of Jonathan Schlede and Claudio Comazzi. It provides a pair of embeddable widgets designed to support the **root-cause analysis** for endusers of the SMVS.
 
-The MVP can be testet here https://smvs-opsearch.onrender.com/
+The MVP can be testet here https://smvs-opsearch.onrender.com/. The editor can be opened using Ctrl + E. Changes are only stored temporarily!
 
 ## What It Does
 
