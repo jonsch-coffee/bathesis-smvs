@@ -14,6 +14,10 @@ load_dotenv()
 # API-KEY
 API_KEY = os.getenv("API_KEY")
 
+# CORS
+origins = os.getenv("CORS_ALLOWED_ORIGINS", "")
+origins_list = [origin.strip() for origin in origins.split(",") if origin]
+
 # Datastore
 db_path = os.path.join(BASE_DIR, "db.json")
 
@@ -21,7 +25,7 @@ db_path = os.path.join(BASE_DIR, "db.json")
 app = FastAPI()
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://localhost:8080", "http://localhost:8081"],
+    allow_origins=origins_list,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -140,31 +144,39 @@ async def delete_guide(guide_id: str, authorization: Optional[str] = Header(None
 #######################################################
 # Widgets
 #######################################################
+# Search-Widget
 @app.get("/search-widget")
-def serve_widget():
-    with open("search-widget.js", "r", encoding="utf-8") as f:
-        js_code = f.read()
+def serve_widget(request: Request):
+    widget = load_widget("search-widget.js")
 
+    origin = request.headers.get("origin")
     headers = {
-        "Access-Control-Allow-Origin": "https://smvs-gmbh.ch",
         "Cross-Origin-Resource-Policy": "cross-origin",
         "Content-Type": "application/javascript"
     }
 
-    return Response(content=js_code, media_type="application/javascript", headers=headers)
+    # Dynamisch nur erlaubte Origin setzen
+    if origin in origins_list:
+        headers["Access-Control-Allow-Origin"] = origin
+
+    return Response(content=widget, media_type="application/javascript", headers=headers)
 
 
 
 # Editor-Widget
 @app.get("/editor-widget")
-def serve_widget():
+def serve_widget(request: Request):
     widget = load_widget("editor-widget.js")
 
+    origin = request.headers.get("origin")
     headers = {
-        "Access-Control-Allow-Origin": "https://smvs-gmbh.ch",
         "Cross-Origin-Resource-Policy": "cross-origin",
         "Content-Type": "application/javascript"
     }
+
+    # Dynamisch nur erlaubte Origin setzen
+    if origin in origins_list:
+        headers["Access-Control-Allow-Origin"] = origin
 
     return Response(content=widget, media_type="application/javascript", headers=headers)
 
