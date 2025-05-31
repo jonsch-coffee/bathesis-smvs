@@ -1,8 +1,8 @@
-# 📘 Guide & Editor Widgets for SMVS
+# Guide & Editor Widgets for SMVS
 
 This project provides a pair of embeddable widgets designed to support the **root-cause analysis** for endusers of the SMVS.
 
-## 🧠 What It Does
+## What It Does
 
 - **Operation-Code Search Engine:** Helps end-users identify solutions for an occured alert in ones POS, by providing step-by-step instructions after entering the operation code from the alert message.
 - **Visual Editor Interface:** Enables administrators to create and manage guides directly through a editor.
@@ -14,11 +14,11 @@ Both components are delivered as **self-contained JavaScript widgets** that can 
 
 ---
 
-## ⚙️ Configuration Options
+## Configuration Options
 
 The widgets are initialized via JavaScript and accept configuration parameters for API integration and authorization.
 
-### 🔧 Example Integration for the editor
+### Example integration for the editor
 
 ```html
 <!-- Widget Container -->
