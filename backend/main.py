@@ -1,36 +1,15 @@
-import os
-import hashlib
-import json
-import requests
-import logging
-
-logging.basicConfig(level=logging.INFO)
-logger = logging.getLogger(__name__)
 from fastapi import FastAPI, Query
 from crud import get_guide_by_id, get_guide_by_opcode, get_all_guides, put_guide_crud, delete_guide_crud
 from fastapi.middleware.cors import CORSMiddleware
-
-is_prod = os.getenv("ENV") == "production"
-
 app = FastAPI()
-
-#allowed_origins = (
-#    ["https://bathesis-smvs-dev.jonsch.coffee"]
-#    if is_prod
-#    else ["http://localhost:8080"]
-#)
-
-allowed_origins = ["*"] # TMPPPP!!!
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=allowed_origins,
+    allow_origins=["*"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
-
-from fastapi import Request
 
 @app.get("/guides/{guide_id}")
 def fetch_guide(guide_id: int):
