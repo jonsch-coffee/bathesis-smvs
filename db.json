@@ -1,0 +1,37 @@
+{
+  "guides": [
+    {
+      "id": "2990956b-8832-42fa-a661-5625fda3dddb",
+      "title": "TEST_Guide",
+      "steps": [
+        {
+          "id": "d4c7f2c7-839c-448c-bcec-5fc7e676ee45",
+          "questionTitle": "Schritt 1TEST",
+          "description": "TEST",
+          "options": [
+            {
+              "id": "4442186e-7853-4c31-b959-9050f0c18e96",
+              "label": "TESTTTT",
+              "target": "86ea9bbb-07a9-4177-87be-2855b6fb698d"
+            }
+          ]
+        },
+        {
+          "id": "86ea9bbb-07a9-4177-87be-2855b6fb698d",
+          "questionTitle": "Schritt 2TTT",
+          "description": "",
+          "options": []
+        }
+      ],
+      "opCodes": [
+        "12345678"
+      ]
+    }
+  ],
+  "opcodes": [
+    {
+      "code": "12345678",
+      "guideId": "2990956b-8832-42fa-a661-5625fda3dddb"
+    }
+  ]
+}
