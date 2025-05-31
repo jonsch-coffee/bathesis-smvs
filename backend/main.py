@@ -1,11 +1,17 @@
+import os
+
+from dotenv import load_dotenv
 from fastapi import FastAPI, Query
 from crud import get_guide_by_id, get_guide_by_opcode, get_all_guides, put_guide_crud, delete_guide_crud
 from fastapi.middleware.cors import CORSMiddleware
 app = FastAPI()
+load_dotenv()
+
+allowed_origin = os.getenv("CORS_ALLOWED_ORIGIN")
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=[allowed_origin],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
