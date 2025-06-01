@@ -48,7 +48,14 @@
     {
       "id": "617784d5-382e-44b0-919a-fb782515c7f6",
       "title": "TEST2",
-      "steps": [],
+      "steps": [
+        {
+          "id": "934a5a8e-69cb-445f-bd0c-70854a44b85e",
+          "questionTitle": "Schritt 1",
+          "description": "TEST",
+          "options": []
+        }
+      ],
       "opCodes": [
         "87654321"
       ]
