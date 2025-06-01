@@ -1,5 +1,4 @@
 <script setup>
-// eslint-disable-next-line
 import SearchHome from "./views/SearchHome.vue";
 </script>
 

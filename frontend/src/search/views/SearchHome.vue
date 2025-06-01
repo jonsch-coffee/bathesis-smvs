@@ -46,14 +46,13 @@
 <template>
   <div>
     <div v-if="!selectedGuideId">
-      <div class="container justify-content-center" style="max-width: 500px;">
+      <div class="container" style="max-width: 500px;">
         <div class="row" style="margin-top: 15px">
           <div class="alert alert-warning" v-if="error">
             Es konnte kein passender Operation-Code gefunden werden!
           </div>
         </div>
 
-        <div class="row">
           <v-otp-input
               ref="otpInput"
               input-classes="otp-input"
@@ -67,10 +66,8 @@
               @on-complete="handleSearchInput"
               :placeholder="['0', '0', '0', '0', '0', '0', '0', '0']"
           />
-        </div>
 
-        <div class="row" style="margin-top: 15px; width: 390px;">
-          <ul class="list-group" v-if="suggestions.length">
+          <ul class="list-group" v-if="suggestions.length" style="width: 350px">
             <li
                 v-for="s in suggestions"
                 :key="s.code"
@@ -80,8 +77,6 @@
               {{ s.code }}
             </li>
           </ul>
-        </div>
-
       </div>
     </div>
 
