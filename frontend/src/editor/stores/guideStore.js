@@ -1,5 +1,9 @@
 import { defineStore } from 'pinia'
 
+/**
+ * Pinia-Store that stores global variables
+ * @type {StoreDefinition<"guide", {allGuides: [], selectedGuideId: string, guide: {id: string, title: string, steps: [], opCodes: []}, lastSavedAt: null, saveFailed: null}, {guideSteps(*): [], selectedGuide(*): *}, {setAllGuides(*): void, selectGuideById(*): void, updateGuideLocally(*): void, createNewGuide(*): void, deleteGuide(): void, removeStepById(*): void}>}
+ */
 export const useGuideStore = defineStore('guide', {
     state: () => ({
         allGuides: [],
@@ -10,7 +14,8 @@ export const useGuideStore = defineStore('guide', {
             steps: [],
             opCodes: []
         },
-        lastSavedAt: null
+        lastSavedAt: null,
+        saveFailed: null,
     }),
 
     getters: {
@@ -24,9 +29,7 @@ export const useGuideStore = defineStore('guide', {
 
     actions: {
         setAllGuides(guides) {
-            console.log('SET allGuides:', guides, typeof guides)
             this.allGuides = guides
-            console.log('this.allGuides:', this.allGuides)
         },
 
         selectGuideById(id) {

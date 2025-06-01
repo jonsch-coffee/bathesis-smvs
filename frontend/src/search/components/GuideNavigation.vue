@@ -1,5 +1,4 @@
 <script setup>
-// eslint-disable-next-line
 defineProps({
   hasPrev: {
     type: Boolean,

@@ -1,8 +1,8 @@
 
 /**
- * Sendet einen PATCH-Request zur Aktualisierung eines Guides.
- * @param {AxiosInstance} api - vorab erstellter Axios-Client (mit API-Key)
- * @param {Object} guide - das zu speichernde Guide-Objekt
+ * Sends patch, post and delete requests to the backend
+ * @param {AxiosInstance} api - Axios instance which contains the api-key
+ * @param {Object} guide - guide-object which needs to be stored
  * @returns {Promise} - Axios-Promise
  */
 export function updateGuide(api, guide) {

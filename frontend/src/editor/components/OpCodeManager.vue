@@ -1,3 +1,10 @@
+<!--
+
+Operation-Code Modal which allows the user to add an eight digit operation-code to a guide.
+It checks wether the operation-code has already been assigned to another guide and also performs
+a typo-check if the entered code has exactly eight digits.
+
+-->
 <script setup>
 import { ref, computed, defineProps } from 'vue'
 import {
@@ -11,7 +18,7 @@ defineProps({
   isDiabled: Boolean
 })
 
-const modal = ref(false)
+const modalVisible = ref(false)
 
 const guideStore = useGuideStore()
 const { guide, allGuides } = storeToRefs(guideStore)
@@ -47,11 +54,11 @@ function removeOpCode(code) {
 </script>
 
 <template>
-  <BButton variant="primary" @click="modal = !modal" :disabled="isDiabled">
-    Operation-Codes
+  <BButton variant="primary" @click="modalVisible = !modalVisible" :disabled="isDiabled">
+    🧮 Operation-Codes
   </BButton>
 
-  <BModal id="opcode-modal" title="Operation-Codes zuweisen" v-model="modal">
+  <BModal id="opcode-modal" title="Operation-Codes zuweisen" v-model="modalVisible">
     <div v-if="associatedCodes.length === 0" class="mb-3 text-muted">
       Noch keine Operation-Codes definiert
     </div>
@@ -71,6 +78,13 @@ function removeOpCode(code) {
     </BFormGroup>
 
     <p class="text-danger mt-2" v-if="opCodeError">{{ opCodeError }}</p>
+
+    <template #footer>
+      <b-button variant="secondary" @click="modalVisible = false">
+        Schliessen
+      </b-button>
+    </template>
+
 
   </BModal>
 </template>

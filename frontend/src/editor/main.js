@@ -11,6 +11,12 @@ import 'bootstrap/dist/css/bootstrap.css'
 import 'bootstrap-vue-next/dist/bootstrap-vue-next.css'
 import '../shared/assets/main.css'
 
+
+/**
+ * Mounts Editor-Widget to div-container with the id editor-widget
+ * @param targetSelector
+ * @param config
+ */
 export function mountEditorApp(targetSelector = '#editor-widget', config = {}) {
     const app = createApp(App)
     const pinia = createPinia()
@@ -19,7 +25,6 @@ export function mountEditorApp(targetSelector = '#editor-widget', config = {}) {
     app.use(pinia)
     app.component('BButton', BButton)
 
-    // Editor-spezifisches Config-Objekt bereitstellen
     app.provide('EditorWidgetConfig', config)
 
     const target = document.querySelector(targetSelector)

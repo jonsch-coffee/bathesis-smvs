@@ -1,6 +1,6 @@
 /**
  * All shared get-request
- * Needs api-instance from search / editor (eg. editorApiBase.js)
+ * Api-instance is injected from search / editor (eg. editorApiBase.js)
  */
 
 export function getGuideElement(api, id) {

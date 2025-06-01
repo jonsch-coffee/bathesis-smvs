@@ -1,5 +1,5 @@
 <script setup>
-import { onMounted, watch } from 'vue'
+import { onMounted, watch, ref } from 'vue'
 import { useEditorApiClient } from '../composables/useEditorApiClient'
 import { getAllGuides } from '@/shared/services/guideService'
 
@@ -12,42 +12,47 @@ import { useGuideStore } from "@/editor/stores/guideStore";
 import OpCodeManager from "@/editor/components/OpCodeManager.vue";
 
 const api = useEditorApiClient()
-
 const guideStore = useGuideStore()
 const {
   allGuides,
   selectedGuideId,
   guide,
-  lastSavedAt
+  lastSavedAt,
+  saveFailed
 } = storeToRefs(guideStore)
+const currentTime = ref(new Date())
+
+setInterval(() => {
+  currentTime.value = new Date()
+}, 1000)
 
 onMounted(async () => {
   try {
     const response = await getAllGuides(api)
     guideStore.setAllGuides(response.data)
   } catch (err) {
-    console.error('API error:', err)
+    alert('Inhalte konnten nicht abgerufen werden! Überprüfen Sie die Entwicklerkonsole für weitere Details mit Windows Strg + Umschalt + J oder F12, und auf Mac Cmd + Option + J oder F12')
+    console.error('Inhalte konnten nicht abgerufen werden!', err)
   }
 })
 
 watch(selectedGuideId, (newId) => {
-  console.log('🌀 Neuer Guide ausgewählt:', newId)
   guideStore.selectGuideById(newId)
 })
 
 useAutoSaveGuide(guide, {
-  saveFn: (guide) => updateGuide(api, guide),
-  updateLocal: (guide) => guideStore.updateGuideLocally(guide)
+  updateGuideApi: (guide) => updateGuide(api, guide),
+  updateGuideLocal: (guide) => guideStore.updateGuideLocally(guide)
 })
 
 async function handleCreateGuide() {
   const title = window.prompt('Gib einen Titel für den neuen Guide ein:')
   try {
     const res = await createGuide(api, title)
-    console.log('Neuer Guide:', res.data)
     guideStore.createNewGuide(res.data)
-  } catch (e) {
-    alert('Fehler beim Erstellen des neuen Guides!')
+  } catch (err) {
+    alert('Fehler beim Erstellen des neuen Guides! Überprüfen Sie die Entwicklerkonsole für weitere Details mit Windows Strg + Umschalt + J oder F12, und auf Mac Cmd + Option + J oder F12')
+    console.error('Neuer Guide konnten nicht erstellt werden', err)
   }
 }
 
@@ -61,32 +66,43 @@ async function handleDeleteGuide() {
       alert('Guide erfolgreich gelöscht. Bitte nun einen neuen aus der Liste unter Guide Editor auswählen.')
     }
   } catch (err) {
-    alert('Guide konnte nicht gelöscht werden!')
+    alert('Guide konnte nicht gelöscht werden! Überprüfen Sie die Entwicklerkonsole für weitere Details mit Windows Strg + Umschalt + J oder F12, und auf Mac Cmd + Option + J oder F12')
+    console.error('Guide konnte nicht gelöscht werden!', err)
   }
 }
-
 
 </script>
 
 <template>
   <div class="container mt-4">
-    <h2>Guide Editor</h2>
+    <h2>Editor</h2>
     <select class="form-select mb-3" v-model="selectedGuideId">
       <option disabled value="">-- Guide wählen --</option>
       <option v-for="g in allGuides" :key="g.id" :value="g.id">{{ g.title }}</option>
     </select>
 
     <div class="btn-group mb-4">
-      <button class="btn btn-success" @click="handleCreateGuide">➕ Neuer Guide</button>
+      <button class="btn btn-success" @click="handleCreateGuide">➕ Neu </button>
       <OpCodeManager :isDiabled="!selectedGuideId" />
       <button class="btn btn-danger" @click="handleDeleteGuide" :disabled="!selectedGuideId">🗑️ Löschen</button>
     </div>
 
-    <p v-if="lastSavedAt" class="text-muted mt-2">
-      Zuletzt gespeichert: {{ lastSavedAt.toLocaleTimeString() }}
+    <!-- Last saved -->
+    <p
+        v-if="lastSavedAt"
+        class="text-muted mt-2 fixed-save-info"
+        :class="{ 'bg-danger text-white': saveFailed }"
+    >
+      Zuletzt gespeichert: {{ lastSavedAt.toLocaleTimeString() }}<br>
+      Uhrzeit: {{ currentTime.toLocaleTimeString() }}
+
+      <p v-if="saveFailed"><br>
+        Editor nicht schliessen ⚠️<br>
+        Änderungen konnten nicht gespeichert werden!
+      </p>
     </p>
 
-    <!-- Aktueller Guide -->
+    <!-- Current Guide -->
     <div v-if="guide.title !== ''">
       <hr>
       <label>Titel</label>
@@ -100,3 +116,17 @@ async function handleDeleteGuide() {
 
   </div>
 </template>
+
+<style scoped>
+  .fixed-save-info {
+    position: fixed;
+    top: 10px;
+    right: 20px;
+    z-index: 1050;
+    background: white;
+    padding: 4px 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    text-align: right;
+  }
+</style>

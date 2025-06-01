@@ -1,3 +1,8 @@
+<!--
+
+Uses the StepEditorItem. Allows the user to add new steps.
+
+-->
 <script setup>
 import { computed } from 'vue'
 import { v4 as uuidv4 } from 'uuid'
@@ -6,7 +11,6 @@ import { useGuideStore } from '../stores/guideStore'
 import StepEditorItem from './StepEditorItem.vue'
 
 const guideStore = useGuideStore()
-
 const steps = computed(() => guideStore.guide.steps)
 
 function addStep() {

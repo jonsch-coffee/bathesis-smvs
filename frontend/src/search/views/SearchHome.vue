@@ -85,7 +85,7 @@
       </div>
     </div>
 
-    <!-- Show step-by-step guide as soon as an operation-cpde has been chosen -->
+    <!-- Show step-by-step guide as soon as an operation-cpde has been selected -->
     <div v-else>
       <GuideDetails
           :guideId="selectedGuideId"

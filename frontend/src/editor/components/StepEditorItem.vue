@@ -1,22 +1,23 @@
+<!--
+
+Let's the user define which step should be taken next. It automatically refreshes the title
+displayed in the dropdown-menu. Using anchor-links the user can jump directly to the selected element.
+
+-->
 <script setup>
 import { computed } from 'vue'
 import { useGuideStore } from '../stores/guideStore'
 import { v4 as uuidv4 } from 'uuid'
 
-
-// eslint-disable-next-line no-undef
 const props = defineProps({
   index: Number
 })
 
 const guideStore = useGuideStore()
-
 const step = computed(() => guideStore.guide.steps[props.index])
-
-// Den aktuellen Schritt ausschliessen in Optionsauswahl
 const allSteps = computed(() =>
     guideStore.guide.steps.filter((_, i) => i !== props.index)
-)
+) // Exclude selected step in selectable options
 
 function addOption() {
   step.value.options.push({
@@ -32,9 +33,8 @@ function removeOption(optionId) {
 </script>
 
 <template>
-  <div class="card mb-3">
+  <div class="card mb-3" :id="`step-${step.id}`"> <!-- anchor id-->
     <div class="card-body">
-      <h5 class="card-title">Schritt {{ index + 1 }}</h5>
 
       <input
           class="form-control mb-2"
@@ -70,7 +70,7 @@ function removeOption(optionId) {
                 :key="s.id"
                 :value="s.id"
             >
-              {{ s.questionTitle || `Schritt ${s.id}` }}
+              {{ s.questionTitle || `Schritt ohne Titel!` }}
             </option>
           </select>
 
@@ -80,17 +80,27 @@ function removeOption(optionId) {
           >
             🗑️ Option löschen
           </button>
+
+          <a
+              v-if="option.target"
+              class="btn btn-sm btn-outline-secondary mt-2 ms-2"
+              :href="`#step-${option.target}`"
+          >
+            🔗 Gehe zu
+          </a> <!-- anchor-link -->
         </div>
 
-        <button class="btn btn-sm btn-outline-primary mt-2" @click="addOption">
-          ➕ Option hinzufügen
-        </button>
         <button
             class="btn btn-sm btn-outline-danger mt-2"
             @click="guideStore.removeStepById(step.id)"
         >
           🗑️ Schritt löschen
         </button>
+
+        <button class="btn btn-sm btn-outline-primary mt-2" @click="addOption" style="margin-left: 8px">
+          ➕ Option hinzufügen
+        </button>
+
       </div>
     </div>
   </div>

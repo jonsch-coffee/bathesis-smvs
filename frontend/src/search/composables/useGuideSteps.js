@@ -1,4 +1,6 @@
-// src/composables/useGuideSteps.js
+/**
+ * ALlows the user to navigate the guide back- and forward
+ */
 import { ref } from 'vue'
 
 export function useGuideSteps(guide) {

@@ -19,7 +19,7 @@
   const emit = defineEmits(['back'])
 
   function goBack() {
-    emit('back') // signalisiert dem Elternteil: zurück zur Suche
+    emit('back') // triggers the back function in parent
   }
 
   const api = useSearchApiClient()
@@ -31,7 +31,6 @@
   const error = ref(false)
 
   onMounted(async () => {
-
       try {
         const { data } = await getGuideElement(api, props.guideId)
         guide.value = data
@@ -42,8 +41,6 @@
       } finally {
         loading.value = false
       }
-
-
   })
 
 </script>
@@ -51,6 +48,12 @@
 <template>
   <div v-if="loading" class="text-muted">Bitte warten...</div>
   <div v-else-if="error" class="alert alert-danger">Guide konnte nicht geladen werden.</div>
+  <div v-else-if="guide.steps.length === 0"> <!-- is displayed if no steps have been configured for the guide but the operation-code has already been assigned -->
+    <div class="alert alert-info mt-3">
+      Für diesen Operation-Code sind noch keine Leitlinien hinterlegt.
+    </div>
+    <button class="btn btn-light me-2" @click="goBack">Zurück zur Suche</button>
+  </div>
   <div v-else-if="currentStep">
     <h3>{{ guide.title }}</h3>
 
@@ -64,6 +67,7 @@
         @select="goToStep"
     />
 
+    <!-- !! => compact version of if (x !== null && x === true) -->
     <GuideNavigation
         :hasPrev="!!prevStep"
         :onBackToSearch="() => goBack()"

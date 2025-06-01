@@ -1,6 +1,6 @@
 {
   "name": "smvs-opsearch",
-  "version": "1.0.0-beta",
+  "version": "0.9.0-beta",
   "private": true,
   "scripts": {
     "dev:search": "VUE_APP_ENTRY=search vue-cli-service serve",

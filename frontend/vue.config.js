@@ -1,6 +1,6 @@
 const { defineConfig } = require('@vue/cli-service')
 
-// Umgebungsvariable lesen
+// Read enviroment variables from cli-input (e.g.: VUE_APP_ENTRY=search vue-cli-service serve)
 const entry = process.env.VUE_APP_ENTRY
 const isSearch = entry === 'search'
 const isEditor = entry === 'editor'
@@ -11,7 +11,7 @@ module.exports = defineConfig({
   transpileDependencies: true,
   productionSourceMap: false,
   css: {
-    extract: false // <-- Styles kommen wieder direkt ins JS
+    extract: false // ensures that styles are included in the widget
   },
 
   ...(isSearch && {
@@ -66,6 +66,6 @@ module.exports = defineConfig({
   },
 
   devServer: {
-    open: entry ? [`/${entry}.html`] : false
+    open: entry ? [`/${entry}.html`] : false // opens webbrowser-windows if dev
   }
 })
