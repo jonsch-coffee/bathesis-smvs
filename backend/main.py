@@ -1,5 +1,3 @@
-from email.policy import default
-
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from config import origins_list
