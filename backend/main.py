@@ -2,7 +2,6 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from config import origins_list
 from routes import guides, opcodes, widgets, default
-
 app = FastAPI()
 
 app.add_middleware(
