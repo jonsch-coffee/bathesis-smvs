@@ -1,0 +1,198 @@
+{
+  "guides": [
+    {
+      "id": 1744474836672,
+      "title": "UNOFFICIAL: Cannot reactivate - Decommissioned at other location",
+      "steps": [
+        {
+          "id": "b8ec4e9f-4d4d-4f4a-b0c4-867ae76c9d64",
+          "questionTitle": "Pack cannot be reactivated.",
+          "description": "This pack was decommissioned at another location and can only be reactivated at that location.\n\nAre you aware whether this pack has been decommissioned on your behalf by the wholesaler or pharmacy you received it from?",
+          "options": [
+            {
+              "id": "97927659-ff20-4851-8e35-721eaea2ecae",
+              "label": "Yes",
+              "target": "e392871f-b80a-47c5-a42d-3de406aa24b3"
+            },
+            {
+              "id": "68e6005a-ecaf-4823-bf43-1eb13f7c2cff",
+              "label": "No",
+              "target": "9c1a4bb9-d181-493f-92b2-7bf8889504ee"
+            }
+          ]
+        },
+        {
+          "id": "e392871f-b80a-47c5-a42d-3de406aa24b3",
+          "questionTitle": "Packs that have been supplied in one location may only be reactivated in the same location.",
+          "description": "If you tried to reactivate the pack due to a procedural error, please document the root cause of the alert in NMVS Alerts. Once documented, the investigation is complete and the pack may be returned to saleable stock.",
+          "options": []
+        },
+        {
+          "id": "9c1a4bb9-d181-493f-92b2-7bf8889504ee",
+          "questionTitle": "Is this a borrowed pack?",
+          "description": "",
+          "options": [
+            {
+              "id": "e5214e28-36ad-4abb-891f-63378309a2e2",
+              "label": "Yes",
+              "target": "b4745398-782a-43a6-8592-b32c3875a1e1"
+            },
+            {
+              "id": "3a89d5b1-c2a3-441d-8609-b4e1197f3faa",
+              "label": "No",
+              "target": "2cd665c9-1a6f-4e98-a11b-403cb0449d18"
+            }
+          ]
+        },
+        {
+          "id": "b4745398-782a-43a6-8592-b32c3875a1e1",
+          "questionTitle": "Borrowed pack",
+          "description": "If the pack was decommissioned at the location you borrowed it from, you cannot reactivate it. If possible, ask the location you borrowed it from to reactivate it, but that can only be done within 10 days of the pack getting decommissioned. If you are certain that the pack was previously decommissioned at another location due to a procedural error, please document the root cause of the alert in NMVS Alerts. Once documented, the investigation is complete and the pack may be returned to saleable stock.",
+          "options": []
+        },
+        {
+          "id": "2cd665c9-1a6f-4e98-a11b-403cb0449d18",
+          "questionTitle": "Not borrowed pack",
+          "description": "Please set this pack aside and contact IMVO for assistance.",
+          "options": []
+        }
+      ],
+      "opCodes": [
+        "51420900"
+      ]
+    },
+    {
+      "id": 1783888107,
+      "title": "UNOFFICIAL: Cannot Decommission",
+      "steps": [
+        {
+          "id": "201fa989-86c0-407d-9cd8-67424e15651b",
+          "questionTitle": "This pack has already been decommissioned.",
+          "description": "Set the pack aside and contact SMVS GmbH for help with this alert. SMVS GmbH will need to run a pack audit trail for this pack to check the history of the pack because this is an uncommon alert.",
+          "options": []
+        }
+      ],
+      "opCodes": [
+        "51220300",
+        "51220800",
+        "51220900",
+        "51320800",
+        "51320900"
+      ]
+    },
+    {
+      "id": 1744480587483,
+      "title": "UNOFFICIAL: There is a mismatch between the data scanned from the pack barcode and the data held in the SMVS GmbH database.",
+      "steps": [
+        {
+          "id": "863d4257-8f5c-4603-ab42-bcce341c15b5",
+          "questionTitle": "Check for manual data entry or barcode issues",
+          "description": "Manual entry: If you entered the\ndata manually, rather than scanning the pack, check that the data entered\nmatches what is printed on the pack. If not, then type it again correctly. If\nthe pack is successfully verified and decommissioned after repeating the manual\nentry attempt, the investigation is complete.\n\n\n\n2D barcode: Check if there is a\nlinear barcode close to the 2D barcode on pack. If you suspect your scanner\nmight have scanned the two barcodes at the same time, try covering the linear\nbarcode with your thumb and scan the 2D barcode again.\n\nHas a root cause been found at this stage?",
+          "options": [
+            {
+              "id": "5b0ace1e-a257-433c-b718-45e2fa41a19d",
+              "label": "Yes",
+              "target": "c05bdc5c-8da1-4764-a127-f982c8e33628"
+            },
+            {
+              "id": "0494bce0-4a6e-4c53-8617-c630672b35ec",
+              "label": "No",
+              "target": "c172692b-de69-40f1-95f2-4177de975417"
+            }
+          ]
+        },
+        {
+          "id": "c05bdc5c-8da1-4764-a127-f982c8e33628",
+          "questionTitle": "Procedural cause found and corrected",
+          "description": "A verification scan of the pack should be undertaken to determine if the corrective action has been successful. If the verification scan is successful, the pack may be returned to saleable stock. If your FMD software told you that \u2018an alert has been raised\u2019, please document the root cause of the alert in NMVS Alerts. Once documented the investigation is complete.",
+          "options": []
+        },
+        {
+          "id": "c172692b-de69-40f1-95f2-4177de975417",
+          "questionTitle": "NMVS Alerts check",
+          "description": "Check NMVS Alerts for\nSMVO/MAH feedback. If you can see from NMVS Alerts that the root cause\nhas been established by the MAH (or SMVO) and the alert has been resolved, no\nfurther alert action is required by you. A verification scan of the pack should\nbe undertaken to determine if the corrective action has been successful. If the\nverification scan is successful, the pack may be returned to saleable stock. \n\nHas a root cause been found and corrected? ",
+          "options": [
+            {
+              "id": "8c75f126-6a94-44e3-a15d-0242dabf1e10",
+              "label": "Yes",
+              "target": "9db4cec5-d7f6-4025-88dd-ed2f6cca7695"
+            },
+            {
+              "id": "feeb6892-d500-4506-b775-0a2b2ca50c73",
+              "label": "No",
+              "target": "6d9b48ca-5515-44c4-a499-61288d5af20e"
+            }
+          ]
+        },
+        {
+          "id": "9db4cec5-d7f6-4025-88dd-ed2f6cca7695",
+          "questionTitle": "Root cause found and corrected",
+          "description": "A verification scan of the pack should be undertaken to determine if the corrective action has been successful. If the verification scan is successful, the pack may be returned to saleable stock.",
+          "options": []
+        },
+        {
+          "id": "6d9b48ca-5515-44c4-a499-61288d5af20e",
+          "questionTitle": "Technical check",
+          "description": "Scanned data:  If you scanned the 2D barcode and the pack data does not match the on-screen data, you may have a misconfigured scanner. If you believe that your scanner is configured incorrectly, go to IMVO\u2019s scanner help web page here and follow the troubleshooting steps provided:\n\n- Follow the \u2018Check your scanner\u2019 and \u2018Fix your scanner\u2019 guidance\n\n- Test your scanner using EMVO's scanner test tool  \n\nFMD software: Check the pack data on your FMD software. If the data on screen appears to be mixed up (e.g product code appears in the batch or serial number) and you have seen the same data mismatch issue with several different packs, you may have a software issue. Please contact your FMD software provider for assistance.\n\nHas a technical error been found and corrected?",
+          "options": [
+            {
+              "id": "33981bcf-df2b-4fed-8027-967dbfed3c5c",
+              "label": "Yes",
+              "target": "78356992-81ae-4e54-a59b-5948b51fd176"
+            },
+            {
+              "id": "32064e88-e870-4ddc-8fb3-f4a12a0a4677",
+              "label": "No",
+              "target": "559aebf0-bc2d-4ec9-8465-d5cbbcc60e65"
+            }
+          ]
+        },
+        {
+          "id": "78356992-81ae-4e54-a59b-5948b51fd176",
+          "questionTitle": "Technical error found and corrected",
+          "description": "A verification scan of the pack should be undertaken to determine if the corrective action has been successful. If the verification scan is successful, the pack may be returned to saleable stock. If your FMD software told you that \u2018an alert has been raised\u2019, please document the root cause of the alert in NMVS Alerts. Once documented the investigation is complete.",
+          "options": []
+        },
+        {
+          "id": "559aebf0-bc2d-4ec9-8465-d5cbbcc60e65",
+          "questionTitle": "Set the pack aside",
+          "description": "Set the pack aside and contact SMVO for assistance. If your FMD software tells you\nthat \u2018an alert has been raised\u2019 please document your investigation and the\nsource of the pack in NMVS Alerts.    ",
+          "options": []
+        }
+      ],
+      "opCodes": [
+        "41020008"
+      ]
+    }
+  ],
+  "opcodes": [
+    {
+      "code": "51420900",
+      "guideId": 1744474836672
+    },
+    {
+      "code": "51220300",
+      "guideId": 1783888107
+    },
+    {
+      "code": "51220800",
+      "guideId": 1783888107
+    },
+    {
+      "code": "51220900",
+      "guideId": 1783888107
+    },
+    {
+      "code": "51320800",
+      "guideId": 1783888107
+    },
+    {
+      "code": "51320900",
+      "guideId": 1783888107
+    },
+    {
+      "code": "41020008",
+      "guideId": 1744480587483
+    }
+  ]
+}
