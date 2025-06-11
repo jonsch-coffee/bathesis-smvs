@@ -1,13 +1,13 @@
 # Operation-Code Search-Engine
 
-This project originated in the Bachelorthesis "Decision-Support für Alertmeldungen im SMVS" of Jonathan Schlede and Claudio Comazzi. It provides a pair of embeddable widgets designed to support the **root-cause analysis** for endusers of the SMVS.
+This project originated in the Bachelorthesis "Decision-Support bei Ursachenanalysen der Alertmeldungen des SMVS" of Jonathan Schlede and Claudio Comazzi. It provides a pair of embeddable widgets designed to support the **root-cause analysis** for endusers of the SMVS.
 
-The MVP can be testet here https://smvs-opsearch.onrender.com/. The editor can be opened using Ctrl + E. Changes are only stored temporarily!
+The Prototype can be testet here https://smvs-opsearch.onrender.com/.
 
 ## What It Does
 
 - **Operation-Code Search Engine:** Helps end-users identify solutions for an occured alert in ones POS, by providing step-by-step instructions after entering the operation code from the alert message.
-- **Visual Editor Interface:** Enables administrators to create and manage guides directly through a editor.
+- **Editor (Admin-only!):** Enables administrators to create and manage guides directly through a editor. Text can be formatted using Markdown syntax https://github.com/jonsch-coffee/smvs-opsearch/releases/tag/v0.9.0
 
 Both components are delivered as **self-contained JavaScript widgets** that can be embedded in any website, including platforms like **Squarespace**.
 
