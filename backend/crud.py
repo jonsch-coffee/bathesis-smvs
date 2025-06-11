@@ -27,7 +27,7 @@ def get_guide_by_opcode(code_like: int) -> OpCode:
     matches = [c for c in db["opcodes"] if c["code"].startswith(code_like)][:2]
     if(matches):
         return matches
-    return db["opcodes"]
+    raise HTTPException(status_code=404, detail="Keine passenden OP-Codes gefunden")
 
 # Get all guides
 def get_all_guides():

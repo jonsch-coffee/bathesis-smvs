@@ -1,33 +1,20 @@
 <script setup>
 // eslint-disable-next-line
-
-import { onMounted, onBeforeUnmount } from 'vue'
-import { useRouter } from 'vue-router'
-
-const router = useRouter()
-
-function handleKeyboardShortcut(e) {
-  if (e.ctrlKey && e.key.toLowerCase() === 'e') {
-    e.preventDefault()
-    router.push('/editor')
-  }
-  if (e.ctrlKey && e.key.toLowerCase() === 'x') {
-    e.preventDefault()
-    router.push('/')
-  }
-}
+// Beispiel mit Vue 3 + Router
+import { onMounted } from 'vue';
 
 onMounted(() => {
-  window.addEventListener('keydown', handleKeyboardShortcut)
-})
+  const params = new URLSearchParams(window.location.search);
+  const code = params.get('code');
 
-onBeforeUnmount(() => {
-  window.removeEventListener('keydown', handleKeyboardShortcut)
-})
+  if (code) {
+    console.log('Eingegebener Code:', code);
+    // Jetzt kannst du damit machen, was du willst
+  }
+});
 </script>
 
 <template>
   <RouterView class="background"/> <!-- wichtig, ansonsten werden die Codes nicht angezeigt aus der Getter-Leiste! -->
 </template>
-
 
