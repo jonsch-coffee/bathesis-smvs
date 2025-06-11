@@ -11,8 +11,7 @@ The Prototype can be testet here https://smvs-opsearch.onrender.com/.
 
 Both components are delivered as **self-contained JavaScript widgets** that can be embedded in any website, including platforms like **Squarespace**.
 
-<img width="724" alt="Example alert message (DE)" src="https://github.com/user-attachments/assets/49805fa0-8aca-40a9-86ee-00018d34faeb" />
-
+<img width="480" alt="image" src="https://github.com/user-attachments/assets/71066a4f-b76a-4ce4-bcb1-ed377a5a4d36" />
 
 ---
 
