@@ -6,7 +6,7 @@ The Prototype can be testet here https://smvs-opsearch.onrender.com/.
 
 ## What It Does
 
-- **Operation-Code Search Engine:** Helps end-users identify solutions for an occured alert in ones POS, by providing step-by-step instructions after entering the operation code from the alert message.
+- **Operation-Code Search:** Helps end-users identify solutions for an occured alert in ones POS, by providing step-by-step instructions after entering the operation code from the alert message.
 - **Editor (Admin-only!):** Enables administrators to create and manage guides directly through a editor. Text can be formatted using Markdown syntax https://github.com/jonsch-coffee/smvs-opsearch/releases/tag/v0.9.0
 
 Both components are delivered as **self-contained JavaScript widgets** that can be embedded in any website, including platforms like **Squarespace**.
@@ -26,12 +26,12 @@ The widgets are initialized via JavaScript and accept configuration parameters f
 <div id="editor-widget"></div>
 
 <!-- Load Widget Script -->
-<script src="editor-widget.js"></script>
+<script src="https://your-api.example.com/editor-widget"></script>
 
 <!-- Initialize Widget -->
 <script>
   EditorWidget.mountEditorApp('#editor-widget', {
     apiUrl: 'https://your-api.example.com',
-    apiKey: 'YOUR_API_KEY' // Optional: for authenticated access
+    apiKey: 'YOUR_API_KEY' // Optional for Operation-Code Search (search-widget)
   });
 </script>
