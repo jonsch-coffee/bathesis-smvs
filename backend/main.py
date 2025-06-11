@@ -1,52 +1,37 @@
-from fastapi import FastAPI, Request, HTTPException
+from fastapi import FastAPI, Query
+from crud import get_guide_by_id, get_guide_by_opcode, get_all_guides, put_guide_crud, delete_guide_crud
 from fastapi.middleware.cors import CORSMiddleware
 
-import json
-import os
-
-BASE_DIR = os.path.dirname(__file__)
-db_path = os.path.join(BASE_DIR, "db.json")
 
 app = FastAPI()
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=["http://localhost:8080", "https://bathesis-smvs.onrender.com/"],  # TODO: Replace for production. Only in TESTING!!!
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
 
-# DB
-with open(db_path, "r", encoding="utf-8") as file:
-    db = json.load(file)
+@app.get("/guides/{guide_id}")
+def fetch_guide(guide_id: int):
+    return get_guide_by_id(guide_id)
 
-# Returns system-health
-@app.get("/health")
-def health():
-    return {"status": "ok"}
+@app.get("/opcodes")
+def get_opcodes(
+        code_like: str = Query(None),
+        code: str = Query(None) # one of them works... maybe the frontend code should be optimized in a way that I don't need to optional params
+):
+    search_code = code_like or code # kind a like a work-around aka tmp-fix ;)
+    return get_guide_by_opcode(search_code)
 
-# Returns all registered guides
-@app.get("/guides/all")
-def get_all_guides():
-    return db.get("guides", [])
+@app.get("/guides")
+def get_guides():
+    return get_all_guides()
 
-# Returns a specific guide based on its ID
-@app.get("/guides/{requested_guide_id}")
-def get_guide_by_id(requested_guide_id: int):
-    guide = next((g for g in db["guides"] if g["id"] == requested_guide_id), None)
-    if guide is None:
-        raise HTTPException(status_code=404, detail="Kein passender Guide gefunden")
-    return guide
+@app.patch("/guides/{guide_id}")
+def put_guide(guide_id: int, updated: dict):
+    return put_guide_crud(guide_id, updated)
 
-# Returns a list of all Operation-Codes and their referenced guide
-@app.get("/opcodes/all")
-def get_all_opcodes():
-    return db.get("opcodes", [])
-
-# Used for TypeAhead. Checks available codes from left to right.
-@app.get("/opcodes/like/{this_code}")
-def get_opcodes_like(this_code: int):
-    matches = [c for c in db["opcodes"] if c["code"].startswith(str(this_code))]
-    if not matches:
-        raise HTTPException(status_code=404, detail="Keine passenden OP-Codes gefunden")
-    return matches
+@app.delete("/guides/{guide_id}")
+def delete_guide(guide_id: int):
+    return delete_guide_crud(guide_id)

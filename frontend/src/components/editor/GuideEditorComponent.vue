@@ -4,7 +4,7 @@ import {reactive, ref, onMounted, watch, computed} from 'vue'
 import { v4 as uuidv4 } from 'uuid'
 
 import StepEditorComponent from './StepEditorComponent.vue'
-import GuideService from '@/services/guideServiceDeprecated'
+import GuideService from '@/services/guideService'
 
 import debounce from 'lodash/debounce'
 

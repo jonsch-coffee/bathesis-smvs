@@ -1,7 +1,7 @@
 <script setup>
 /* eslint-disable */
 import { useRoute, useRouter } from 'vue-router'
-import GuideService from '@/services/guideServiceDeprecated'
+import GuideService from '@/services/guideService'
 import { ref } from "vue";
 //TODO put in Guide component
 const route = useRoute()
